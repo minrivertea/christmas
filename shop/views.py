@@ -21,7 +21,6 @@ from cStringIO import StringIO
 import os, md5
 import datetime
 import uuid
-import twitter
 import re
 
 from christmas.shop.models import *
@@ -58,26 +57,7 @@ def GetCountry(request):
     urlobj.close()
     datadict = simplejson.loads(data)
     return datadict
-
-def twitter_post(tweet):   
-    if not twitter or not hasattr(settings, 'TWITTER_USER') or \
-        not hasattr(settings, 'TWITTER_PASS'):
-        return
-
-    try:
-        api = twitter.Api(
-                consumer_key=settings.CONSUMER_KEY,
-                consumer_secret=settings.CONSUMER_SECRET, 
-                access_token_key=settings.ACCESS_TOKEN, 
-                access_token_secret=settings.ACCESS_SECRET,
-                )
-         
-        update = api.PostUpdate(tweet)
-        
-    except Exception, e:
-        if settings.DEBUG:
-            raise(e)
-            
+    
 
 # the homepage view
 def index(request):

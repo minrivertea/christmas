@@ -3,7 +3,7 @@
 {% load django_static %}
 
 {% block metadescription %}{% if tea.meta_description %}{{ tea.meta_description|safe }}{% else %}{{ tea.name }} - {{ tea.description|safe }}{% endif %}{% endblock %}
-{% block pagetitle %}{{ tea.meta_title }}{% endblock %}
+{% block pagetitle %}{{ tea.name }}{% endblock %}
 
 {% block extrajs %}
 <script>
@@ -74,72 +74,11 @@ $(document).ready( function() {
 
 </script>
 
-<script type="application/javascript" src="{% staticfile '/js/lightbox/jquery.fancybox-1.3.4.pack.js' %}"></script>
 {% endblock %}
 
 {% block extracss %}
-<link rel="stylesheet" href="{% staticfile '/css/fancybox/jquery.fancybox-1.3.4.css' %}" />
 <style type="text/css">
-div.more-info {
-  padding-left: 0px;
-  margin-bottom: 15px;
-  padding-top: 15px;	
-  border-top: 1px solid #e1e1e1;
-  margin-top: 15px;
-}
 
-#home-banner p.normal {
-    font-size: 15px;
-    width: 500px;
-}
-
-h3.more-info {
-    margin-bottom:10px;
-    margin-top: -3px;
-    padding-bottom: 0;
-}
-
-div.right-links h3.more-info {
-  margin-bottom: 15px;	
-  float: left;
-  width: 220px;
-}
-
-
-div.other-teas {
-    float: left;
-    margin: 0 0 10px 10px;
-    width: 500px;
-}
-
-div.other-tea {
-    border-bottom: 1px solid white;
-    color: #666666;
-    float: left;
-    font-size: 0.9em;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    width: 460px;
-}
-
-div.other-tea.last {
-  border-bottom: none;	
-}
-
-div.other-tea div.image {
-  float: left;
-  margin-right: 15px;
-}
-
-div.other-tea div.text {
-  margin-top: 2px;	
-}
-
-div.other-teas h3 {
-  font-size: 1.5em;
-  text-shadow: 1px 1px #fff;
-  margin-bottom: 20px;
-}
 
 div.product-photos-small {
     float: left;
