@@ -1,0 +1,1 @@
+@{{ twitter_username }} - we've got your tea order, thanks. We'll post an update when it's shipped!

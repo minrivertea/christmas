@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block pagetitle %}Order (Step 2 of 3) - Confirm Order{% endblock %}
+
+
+{% block extracss %}
+<style type="text/css">
+input.checkout-button {
+  background: none;
+  background-color: #439249;
+  padding: 10px 15px;
+  -webkit-border-radius: 5px;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  margin: 10px 15px 15px 0;
+  text-align: right;
+  display:block;
+  border: none;	
+  font-size: 16px;
+}
+
+form {
+  width: 88%;
+  float: left;
+  padding: 0 5% 0 7%;	
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;	
+}
+
+#things span.price {
+  float: right;
+  font-weight: bold;
+  font-size: 13px;	
+}
+</style>
+
+{% endblock %}
+
+{% block banner %}
+<h1>3/4 Confirm your order</h1>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{{ paypal_submit_url }}">    
+
+		<input type="hidden" name="cmd" value="_cart"> 
+		<input type="hidden" name="upload" value="1"> 
+		<input type="hidden" name="business" value="{{ paypal_receiver_email }}">
+		<input type="hidden" name="currency_code" value="GBP">
+		<input type="hidden" name="address_override" value="1">
+		
+		<input type="hidden" name="address1" value="{{ order.address.house_name_number }}, {{ order.address.address_line_1 }}">		
+		<input type="hidden" name="address2" value="{{ order.address.address_line_2 }}">
+		<input type="hidden" name="city" value="{{ order.address.town_city }}">
+		<input type="hidden" name="country" value="GB">
+		<input type="hidden" name="zip" value="{{ order.address.postcode }}">
+		<input TYPE="hidden" NAME="return" value="{{ paypal_return_url }}">
+		<input TYPE="hidden" NAME="cancel" value="{{ paypal_notify_url }}">
+		<input TYPE="hidden" NAME="notify_url" value="{{ paypal_notify_url }}">
+		<input type="hidden" id="id_no_shipping" value="1" name="no_shipping">
+		<input type="hidden" id="id_charset" value="utf-8" name="charset">
+
+		<input type="hidden" name="invoice" value="TEA-00{{ order.id }}" id="id_invoice" />
+
+		{% if postage_discount %}
+		{% else %}
+		<input type="hidden" name="item_name_1" value="Postage Standard Rate"> 
+		<input type="hidden" name="quantity_1" value="1">
+		<input type="hidden" name="amount_1" value="3.00">
+		{% endif %}
+		 
+		 {% if postage_discount %}
+	 		 {% for thing in basket_items %}
+				<input type="hidden" name="item_name_{{ forloop.counter }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }} -  ({{ thing.item.weight|floatformat }}{{ thing.item.weight_unit }})"> 
+				<input type="hidden" name="quantity_{{ forloop.counter }}" value="{{ thing.quantity }}">
+				<input type="hidden" name="amount_{{ forloop.counter }}" value="{{ thing.item.price }}"> 
+			 {% endfor %}
+		{% else %}
+			 {% for thing in basket_items %}
+				<input type="hidden" name="item_name_{{ forloop.counter|add:"1" }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }} -  ({{ thing.item.weight|floatformat }}{{ thing.item.weight_unit }})"> 
+				<input type="hidden" name="quantity_{{ forloop.counter|add:"1" }}" value="{{ thing.quantity }}">
+				<input type="hidden" name="amount_{{ forloop.counter|add:"1" }}" value="{{ thing.item.price }}"> 
+			 {% endfor %}
+		{% endif %}
+		
+
+<p><strong>You have ordered:</strong>
+	
+	
+			
+<ul id="things">
+{% for thing in basket_items %}
+  <li>
+	<span>{{ thing.quantity }} X {{ thing.item.parent_product.name }} ({% if not thing.item.weight %}
+		{% else %}{{ thing.item.weight|floatformat }}{{ thing.item.weight_unit }}{% endif %})</span>
+	<span class="price">£{{ thing.get_price }}</span>
+  </li>
+{% endfor %}
+{% if postage_discount %}
+	<li>
+		<span>There is no postage charge on this order</span>
+	</li>
+{% else %}
+	<li>
+		<span>Postage</span>
+		<span class="price">£3.00</span>
+	</li>
+{% endif %}
+	<li>
+		<span>TOTAL PRICE:</span>
+		<span class="price">£{{ total_price }}</span>
+	</li>
+</ul>
+
+
+<p><strong>We'll send your order to (please check):</strong></p>
+	
+	<ul>
+	    <li>{{ shopper.first_name }} {{ shopper.last_name }}</li>
+		<li>{{ order.address.house_name_number }}</li>
+		<li>{{ order.address.address_line_1 }}</li>
+		<li>{{ order.address.address_line_2 }}</li>
+		<li>{{ order.address.town_city }}</li>
+		<li>{{ order.address.postcode }}</li>
+		<li>{{ order.address.country|upper }}</li>
+	</ul>
+	
+
+<input class="checkout-button" type="submit" value="Confirm and pay &raquo;"/>
+
+<div class="infoblock">
+  <p>If you have any problems or questions, just contact us at <a href="mailto:mail@minrivertea.com">mail@minrivertea.com</a>
+</div>
+
+
+	</form> 
+
+	</div>
+  </div>
+</div>
+{% endblock %}

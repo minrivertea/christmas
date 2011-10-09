@@ -1,0 +1,16 @@
+*.pyc
+paypal-details
+
+local_settings.py
+paypal/
+static/images/product-photos/
+
+
+
+static/cache/
+
+
+TODOLIST
+sorl/
+*.DS_Store
+

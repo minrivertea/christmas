@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block extracss %}
+<style type="text/css">
+div.tell-friend-box {
+  width: 260px;
+  float: left;	
+}
+
+div.tell-friend-box.email {
+    -moz-border-radius: 20px 20px 20px 20px;
+    -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    background-image: url('{% staticfile '/images/gray-stripe.png' %}');
+    margin-top: 20px;
+    padding: 10px;
+    width: 770px;
+}
+
+div.tell-friend-box.email h3 {
+  font-size: 2em;
+  text-shadow: 1px 1px #fff;	
+}
+
+div.tell-friend-box p {
+  padding: 0 20px 0 20px;
+  font-size: 0.9em;	
+}
+
+div.tell-friend-box h3 {
+  margin: 10px 0 10px 20px;	
+}
+
+div.tell-friend-box h3 span {
+  font-weight: normal;	
+  font-family: Arial, sans-serif;
+}
+
+div.tell-friend-box input {
+    -moz-border-radius: 7px 7px 7px 7px;
+    border-color: #D1D1D1 #E1E1E1 #E1E1E1 #D1D1D1;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    color: #666666;
+    float: left;
+    font: 95% arial,helvetica,clean,sans-serif;
+    height: 20px;
+    margin: 0 0 20px 20px;
+    padding: 10px 15px;
+    width: 300px;
+}
+
+div.tell-friend-box label {
+    color: #333333;
+    float: left;
+    font-family: Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+
+
+div.tell-friend-box input.submit-button {
+    background: url('{% staticfile '/images/submit.png' %}') no-repeat scroll left top transparent;
+    border: medium none;
+    float: right;
+    height: 55px;
+    margin: -36px 20px 0 0;
+    width: 227px;
+}
+
+div.tell-friend-box input.submit-button:hover {
+    background: url('{% staticfile '/images/submit.png' %}') no-repeat scroll left bottom transparent;
+}
+
+div.tell-friend-box.email h3.message {
+  font-size: 16px;	
+  color: #1c8716;
+}
+
+div.tell-friend-box p.help-text {
+    float: left;
+    font-size: 0.7em;
+    padding-left: 22px;
+    position: relative;
+    top: -15px;
+    width: 400px;
+}
+
+p.help-text img {
+  position: relative;
+  top: 3px;	
+}
+
+
+</style>
+{% endblock %}
+
+{% block metadescription %}Tell your friends about www.minrivertea.com on facebook, twitter or by email and share the love about great Chinese teas.{% endblock %}
+
+{% block pagetitle%}Tell a friend{% endblock %}
+
+
+
+{% block content %}
+    
+<div id="featured-small"></div>
+
+	<div id="main-text-wide">
+
+		<h1>Tell a friend</h1>
+		<div class="tell-friend-box">
+			<h3>Love tea? Tell your friends!</h3>
+			<p>We really hope that you like our teas and this website. So, if you can answer yes to both those, then why not talk about it!</p>
+			<p>Tweet, share or email about this site using the tools on this page.</p>
+		</div>
+		<div class="tell-friend-box">
+			<a target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.minrivertea.com">
+				<img src="{% staticfile '/images/facebook-large.png' %}">
+			</a>
+			<h3><span>&raquo;</span> <a target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.minrivertea.com">Share on facebook</a></h3>
+		</div>
+		<div class="tell-friend-box">
+			<a target="_blank" href="http://twitter.com/home?status=http%3A%2F%2Fwww.minrivertea.com"><img src="{% staticfile '/images/twitter-large.png' %}"></a>
+			<h3><span>&raquo;</span> <a target="_blank" href="http://twitter.com/home?status=http%3A%2F%2Fwww.minrivertea.com">Tweet this site</a></h3>
+		</div>
+		<div class="tell-friend-box email">
+			{% if message %}
+				<h3 class="message">{{ message }}</h3>
+			{% endif %}
+			<form method="post" action="/tell-a-friend/">
+			<h3>...or email someone else who loves tea</h3>
+			{% if shopper %}
+			<input type="text" name="sender" id="id_sender" value="{{ shopper.email }}" style="display:none;"/>
+			{% else %}
+			<label>Your email:</label><br/>
+			<input type="text" name="sender" id="id_sender"/> <br/>
+			{% endif %}
+			<label>Your friend's email:</label>
+			<input type="text" name="recipient" id="id_recipient" />
+			<p class="help-text"><img src="{% staticfile '/images/lock.gif' %}"> We will never share, sell or spam these email addresses (<a target="_blank" title="Read our privacy policy (opens in a new window)" href="/privacy/">Privacy</a>)</p>	
+			<br/>
+    		<input type="submit" value="" class="submit-button">
+    		    {{ form.sender.errors }}
+    		    {{ form.recipient.errors }}        
+				{{ form.message.errors }}
+			</form>
+		</div>
+		
+		<br clear="all"/>
+
+
+		
+
+    {% endblock %}

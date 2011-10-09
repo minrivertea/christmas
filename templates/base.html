@@ -1,0 +1,109 @@
+{% load django_static %}
+{% load nav_selected %}
+
+{% block doctype %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% endblock %}
+
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="en-gb" http-equiv="Content-Language" />
+	<meta content="{% block metadescription %}{% endblock %}" name="description" />
+		
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="generator" content="Django - http://www.djangoproject.com" />
+	<meta name="DC.format" content="text/html" />
+	<meta name="DC.type" content="Django Site" />
+	<meta name="robots" content="ALL" />
+	<title>{% block pagetitle %}{% endblock %} | China Christmas Cards</title>
+	<link rel="shortcut icon" href="{% staticfile '/images/favicon.ico' %}" type="image/x-icon">
+
+	
+	{% block extra-head %}{% endblock %}
+
+	    <link rel="stylesheet" href="{% staticfile '/css/styles.css' %}" />
+	    <script type="text/javascript" src="{% staticfile '/js/jquery-1.6.min.js' %}"></script>
+	    {% if ga_is_on %}
+	    <script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
+	    {% else %}
+	    <script src="/js/jquery.tools.min.js"></script>
+	    {% endif %}
+	    <script src="{% staticfile '/js/searchbar.js' %}"></script>
+	    <!--[if lte IE 6]>
+		<link rel="stylesheet" media="screen" type="text/css" href="{% staticfile '/css/ie6.css' %}" />
+		<![endif]-->
+
+
+	{% block extracss %}{% endblock %}
+
+</head>
+
+
+
+<body>
+    	
+<div id="header">
+   <div class="super">
+	   	<div id="logo">
+	   		<a title="Buy Christmas cards in China! Yes, your search is over." href="/"></a>
+	   	</div>
+	    	
+	    
+	  	<div id="navigation">
+	   	    <ul id="nav">
+	   	    	<li>
+	   	    		<a class="{% nav_selected request '^/$' %}" href="{% url home %}" title="Chinese tea delivered to your door.">Home</a>
+	   	    	</li>
+	   	        <li>
+	   	        	<a class="{% nav_selected request '^/cards/' %}" href="{% url products %}" title="Buy Christmas Cards" alt="">Our Christmas cards</a>
+	   	        </li>
+	   	        <li>
+	   	        	<a class="{% nav_selected request '^/contact/' %}" href="/contact/" title="Contact Us" alt="">Contact Us</a>
+	   	        </li>
+	   	        <li>
+	   	        	<a class="{% nav_selected request '^/basket/' %}" href="{% url basket %}" title="View your basket" alt="">
+	   	        	   	Your basket {% ifequal basket_quantity 0 %}{% else %}({{ basket_quantity }}){% endifequal %}
+	   	        	</a>
+	   	        </li>
+	  		</ul>
+		</div>
+			
+	{% block banner %}{% endblock %}
+
+</div>
+
+</div><!-- end header -->
+
+	{% block content %}{% endblock %}
+	
+	
+	{% include "shop/snippets/footer.html" %} 
+
+
+</div>
+	{% block extrajs %}{% endblock %}
+	<script type="text/javascript">
+		function languageToggle() {
+			if ($('#language-block').is(":visible")) {
+				$('#language').css('background-color', '#fff');
+				$('#language-block').toggle();
+				$('#language span').css('color', '#3B69A4');
+			}
+			else {
+				$('#language-block').toggle();
+				$('#language').css('background-color', '#333');
+				$('#language span').css('color', '#fff');
+			}
+		}
+
+		$('#language').click(languageToggle);
+		$('#close-language').click(languageToggle);
+	</script>
+
+</body>
+
+</html>

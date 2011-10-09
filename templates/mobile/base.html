@@ -1,0 +1,151 @@
+{% load django_static %}
+{% load nav_selected %}
+
+{% block doctype %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% endblock %}
+
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>{% block pagetitle %}{% endblock %} | The Min River Tea Farm</title>
+
+
+	    <link rel="stylesheet" href="{% staticfile '/css/mobile.css' %}" />
+	    <script type="text/javascript" src="{% staticfile '/js/jquery-1.6.min.js' %}"></script>
+	    {% if ga_is_on %}
+	    <script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
+	    {% else %}
+	    <script src="/js/jquery.tools.min.js"></script>
+	    {% endif %}
+
+
+	{% block extracss %}{% endblock %}
+	
+    {% block ga %}
+    {% if ga_is_on %}
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9041614-4']);
+  _gaq.push(['_trackPageview']);
+  
+  {% if "order/complete/" in request.path %}
+  {% if order %}
+
+  _gaq.push(['_addTrans',
+    '{{ order.invoice_id }}',           // order ID - required
+    'Min River Tea Farm',  // affiliation or store name
+    '{{ order.get_amount }}',          // total - required
+    '',           // tax
+    '',              // shipping
+    '',       // city
+    '',     // state or province
+    ''             // country
+  ]);
+
+   {% for item in order.items.all %}
+  _gaq.push(['_addItem',
+    '{{ order.invoice_id }}',           // order ID - required
+    '{{ item.item.parent_product.id }}',           // SKU/code - required
+    '{{ item.item.parent_product.name }}',        // product name
+    '{{ item.item.weight }}{{ item.item.weight_unit }}',   // category or variation
+    '{{ item.item.price }}',          // unit price - required
+    '1'               // quantity - required
+  ]);
+  {% endfor %}
+  
+  _gaq.push(['_trackTrans']); //submits transaction to the Analytics servers
+  
+  {% endif %}
+  {% endif %}
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+{% if "order/complete" in request.path %}
+{% if order %}
+<!-- Google Code for Bought Something Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 970474503;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "mTM9CJHq3AIQh4jhzgM";
+var google_conversion_value = 0;
+if (15.00) {
+  google_conversion_value = 15.00;
+}
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/970474503/?value=15.00&amp;label=mTM9CJHq3AIQh4jhzgM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+{% endif %}
+{% endif %}
+
+
+
+    {% endif %}
+    
+    
+    
+    {% endblock %}
+</head>
+
+
+
+<body>
+
+{% block message %}{% endblock %}
+    	
+<div id="header">
+	   	<div id="logo">
+	   		<a title="Chinese tea delivered to your door - The Min River Tea Farm" alt="the Min River Tea Farm logo - UK Chinese tea merchant" href="/">
+	   		<img src="{% staticfile '/images/mobile/logo.png' %}">
+	   		</a>
+	   	</div>
+	   	
+	   	<div id="nav">
+	   		<a class="{% ifequal request.path '/' %}selected{% endifequal %}" href="/">Home</a>
+	   		<a class="{% if '/teas/' in request.path %}selected{% endif %}" href="{% url teas %}">Teas</a>
+	   		<a class="{% ifequal '/basket/' request.path %}selected{% endifequal %}" href="{% url basket %}">Your basket {% ifequal basket_quantity 0 %}{% else %}({{ basket_quantity }}){% endifequal %}</a>
+	   	</div>
+</div>
+
+<div id="banner">
+	{% block banner %}{% endblock %}
+</div>
+
+
+	{% block content %}{% endblock %}
+
+</div>
+	{% block extrajs %}{% endblock %}
+	<script>
+		/mobile/i.test(navigator.userAgent) && !window.location.hash && setTimeout(function () {
+		  window.scrollTo(0, 1);
+		}, 1000);
+	</script>
+
+</body>
+
+</html>

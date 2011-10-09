@@ -1,0 +1,18 @@
+Hi {{ shopper.first_name }},
+
+Would you like to send a free tea gift to a friend?
+
+We really hope you've enjoyed your tea, and we'd like to help you share the experience. If there's a friend, relative or colleague that you think would enjoy drinking Chinese tea, then we'll happily send them a sample pack, totally for free.
+
+Just reply to this email including the name and address in the UK of the person you'd like us to send some tea to, and a custom message if you like. 
+
+We'll send them the tea, totally free of charge, and let them know that it's a gift from you. 
+
+All the best
+
+
+Chris West
+www.minrivertea.com
+
+
+ps. If you give us a friend's name and address, we will never contact or send anything else to them, other than a free tea sample. We hate spam just as much as you.

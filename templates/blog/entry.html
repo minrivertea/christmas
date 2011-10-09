@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+{% load comments %}
+
+{% block metadescription %}{{ entry.summary|safe }}{% endblock %}
+{% block pagetitle %}{{ entry.title }}{% endblock %}
+
+
+{% block extrajs %}
+<script>
+$(function() {
+
+// enable circular scrollables with a click handler
+$(".scroll").scrollable({ circular: true }).click(function() {
+	$(this).data("scrollable").next();		
+});
+});
+</script>
+{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+
+h2.fontface {
+  font-size: 34px/40px;	
+}
+
+div#main-text-wide div#right {
+  margin-top: 30px;	
+}
+
+div#entry-content h3 {
+  font-size: 2em;	
+}
+
+div#entry-content h4 {
+  border-bottom: none;
+  font-weight: bold;
+  font-family: "helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+  margin-bottom: 5px;	
+}
+
+div#entry-content p {
+  margin-top: 0px;	
+}
+
+div#entry-content p.date {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  padding-left: 5px;	
+}
+
+div#entry-content img {
+  float: right;
+  margin: 10px 0 30px 30px;	
+  border-radius: 10px;
+}
+
+div#right p.mail {
+	float: left;
+	height: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted #e1e1e1;
+    padding-bottom: 10px;
+}
+
+div#right p.mail.last {
+  border-bottom: none;	
+}
+
+div.next-previous {
+  border-top: 3px dotted #e1e1e1;
+  padding: 20px 0;
+  margin-bottom: 20px;	
+  width: 660px;
+  float: left;
+  border-bottom: 3px dotted #e1e1e1;
+}
+
+div.other-entry {
+  width: 210px;
+  float: left;
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 10px 15px;
+  position: relative;
+  border-radius: 5px;
+  left: -15px;
+  -moz-transition-property: background;
+  -moz-transition-duration: 300ms;
+}
+
+div.other-entry a {
+  font-family: "helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+  font-weight: bold;	
+}
+
+div#main-text-wide div#left div.other-entry p {
+  margin-bottom: 0;	
+}
+
+div.other-entry span.link {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+
+
+div.other-entry:hover {
+  background-color: #f1f1f1;	
+}
+
+div.other-entry:hover a {
+  text-decoration: underline;
+}
+
+div.other-entry:hover p {
+  color: #333;	
+}
+
+div#entry-content img.tweet {
+    border-radius: 0 0 0 0;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+    top: 8px;
+}
+
+img.tweets {
+  margin: -70px 0 10px 0;	
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+  	<h1>{{ entry.title }}</h1>
+	<p class="subtitle"><a href="{% url blog_home %}">&laquo; back to blog home</a> | {{ entry.date_added|date:"D d M Y" }}</p>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">		
+			
+
+	<div id="right">
+		{% include "blog/snippets/blog-right.html" %}
+	</div>
+
+	<div id="left">
+
+		<div id="entry-content">
+
+			
+			<p>{{ entry.content|safe }}</p>
+
+			<div class="next-previous">
+			{% if ga_is_on %}<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=198543263524427&amp;xfbml=1"></script><fb:like href="http://www.minrivertea.com{{ entry.get_absolute_url }}" style="float:left;" send="false" layout="box_count" width="50" show_faces="true" font=""></fb:like>{% endif %}
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.minrivertea.com/blog/{{ entry.slug }}/" data-text="{{ entry.title }}" data-count="none" data-via="minrivertea"><img src="{% staticfile '/images/twitter-small.png' %}"></a>
+			</div>
+			
+			<div id="comments">
+			{% get_comment_list for entry as comment_list %}
+				{% if comment_list %}
+				{% get_comment_count for entry as comment_count %}
+				<h3>Comments on this post ({{ comment_count }})</h3>
+				<br clear="all"/>
+				<div id="comments-list">
+					{% for comment in comment_list %}
+						<div class="comment">
+							<p>
+								<strong>
+									{% if comment.user_url %}<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>
+									{% else %}{{ comment.user_name }}{% endif %}
+									 said...
+								</strong> 
+								<span class="small">({{ comment.submit_date|date:"D d M Y" }})</span></p>
+							<p>{{ comment.comment }}</p>
+						</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				<div id="comment-form">
+				<h3>Add your comment</h3>
+				<br clear="all"/>
+					<div id="form">
+					{% render_comment_form for entry %}
+					</div>
+				</div>
+			</div>
+			
+			{% if other_entries %}
+				<h3>Other recent posts you might like</h3>		
+				{% for other in other_entries %}
+					<div class="other-entry">
+		 			<a href="{% url blog_entry other.slug %}"><span class="link"></span></a>
+			 		<a class="title" href="{% url blog_entry other.slug %}" title="{{ other.title }} - a blog entry">{{ other.title }}</a>
+	 				<p>{{ other.summary }}</p>
+	 				</div>
+				{% endfor %}
+			{% endif %}	
+			
+		</div>
+	</div>
+  </div>
+</div>
+
+{% endblock %}
+
+

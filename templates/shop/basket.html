@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block pagetitle %}Your basket ({{ basket_quantity }}){% endblock %}
+{% block metadescription %}Your basket - shop on www.minrivertea.com and get the best prices and great tasting authentic Chinese teas delivered direct to your door.{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+div#main-text-wide  {
+  margin-top: 30px;	
+}
+
+div#main-text-wide div#left {
+  margin-top: 20px;	
+}
+
+div#main-text-wide div#right {
+  margin-top: 30px;	
+}
+
+div.row-box p.intro {
+    margin: -10px 0 5px;
+}
+
+div#basket-full {
+  width: 600px;
+  float: left;	
+  font-size: 1em;
+}
+
+div#basket-full img {
+  border-radius:5px;
+  border: 3px solid #fff;	
+}
+
+div.basket-row {
+    border-bottom: 2px dotted #e1e1e1;
+    float: left;
+    height: 70px;
+    margin-bottom: 0px;
+    padding: 10px 0 0 10px;
+    width: 100%;
+}
+
+div.basket-row.postage {
+    height: 40px;
+}
+
+div.basket-row.postage div.tea-weight, div.basket-row.postage div.tea-total {
+  padding-top: 0;	
+}
+
+.strikethrough {
+  text-decoration: line-through;	
+}
+
+div.basket-head-row {
+  height: 15px;
+  float: left;
+  margin: 20px 0 10px 0;
+  padding: 0px 0px 5px 13px;
+  font-size: 0.9em;
+  color: #BE373A;
+}
+
+div.tea-name {
+  float: left;
+  width: 120px;	
+}
+
+div.tea-weight {
+  float: left;
+  width: 200px;	
+  padding-top: 6px;
+}
+
+div.tea-price {
+  float: left;
+  width: 10px;
+}
+
+div.tea-quantity {
+  float: left;
+  width: 70px;	
+  text-align: center;
+  padding-top: 8px;
+  font-size: 1.3em;
+  font-weight: bold;  
+}
+
+
+
+div.tea-total {
+  float: left;
+  width: 200px;	
+  text-align: right;
+  font-size: 1.2em;
+  padding-top: 8px;
+  font-weight: bold;
+}
+
+div.tea-remove {
+    float: left;
+    padding-top: 18px;
+    text-align: left;
+    width: 30px;
+}
+
+div.tea-remove a {
+    background: url("/images/delete.png") no-repeat scroll left top transparent;
+    display: block;
+    height: 14px;
+    margin-top: 4px;
+    width: 11px;
+}
+
+div.tea-remove a:hover {
+  background: url({% staticfile '/images/delete.png' %}) no-repeat bottom left;
+}
+
+div#totals {
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0 0 360px;
+    text-align: right;
+    width: 250px;
+    letter-spacing: -1px;
+    color: #666;
+}
+
+div.label {
+  float: left;
+  width: 100px;
+  margin-top: 10px;	
+}
+
+div.total {
+  color: #1A6D18;
+  text-align: right;
+  margin-top: 10px;
+  float: right;
+
+}
+
+div#extra-info {
+  width: 500px;
+  margin-top: 60px;	
+}
+
+div#extra-info div.box {
+    border-bottom: 1px solid #E1E1E1;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+div#extra-info p {
+  margin-top: 0;
+  font-size: 13px;	
+}
+
+div#extra-info h3 {
+  margin-bottom: 0px;
+}
+
+div.plus-minus {
+  float: right;
+  width: 35px;
+  display: block;
+  height: 15px;
+}
+
+div.plus-minus a {
+ display: none	
+}
+
+div.basket-row:hover div.plus-minus a {
+  display: block;	
+}
+
+
+a.plus {
+  display: block;
+  background: url('{% staticfile "/images/plus.png" %}') no-repeat top left;
+  height: 14px;
+  width: 15px;
+  float: right;
+  position: relative;
+  top: 4px;	
+}
+
+a.plus:hover {
+  background-position: bottom left;
+}
+
+a.minus {
+  display: block;
+  background: url('{% staticfile "/images/minus.png" %}') no-repeat top left;
+  height: 14px;
+  width: 15px;
+  float: left;	
+  position: relative;
+  top: 4px;	
+}
+
+a.minus:hover {
+  background-position: bottom left;
+}
+
+
+
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div id="main-text-wide">
+  <div class="super">
+
+{% if basket_items %}
+
+  <div id="basket">
+  
+  	<div id="checkout-button">	
+		<p>
+			<strong>Next step</strong>: your details. 
+			<em>No login or registration required to purchase.</em>
+		</p>
+		<a class="button" href="{% url order_step_one %}">Start checkout &raquo;</a>
+	</div>
+ 
+	<div id="basket-full">
+	 
+	{% for thing in basket_items %}
+	  <div class="basket-row">
+		<div class="tea-name">
+			{% thumbnail thing.item.parent_product.image "100" crop="center" as im %}
+			<img src="{{ im.url }}"/>
+			{% endthumbnail %}
+			<br/>
+		</div>
+		<div class="tea-weight">
+			<a title="{{ thing.item.parent_product.description }}" href="{% url product_view thing.item.parent_product.slug %}">{{ thing.item.parent_product.name }}</a>
+			{{ thing.item.price_unit }}{{ thing.item.price }}<br/>
+			<a title="Remove" alt="remove item from your basket" href="{% url remove_from_basket thing.item.id %}"><span class="small">Remove from basket</span></a>
+		</div>
+		<div class="tea-price">&nbsp;</div>
+		<div class="tea-quantity">x {{ thing.quantity }} 
+			<div class="plus-minus"><a class="plus" href="{% url increase_quantity thing.item.id %}"></a>{% ifequal thing.quantity 1 %}{% else %} <a class="minus" href="{% url reduce_quantity thing.item.id %}"></a>{% endifequal %}</div> </div>
+		<div class="tea-total">{{ thing.item.price_unit}}{{ thing.get_price }}</div>
+		
+	  </div>
+	{% endfor %}
+	{% if postage_discount %}
+	  <div class="basket-row postage">
+		<div class="tea-name strikethrough"><em>Postage <span class="small">(Standard)</span></em></div>
+		<div class="tea-weight"><span class="small"><em>* Your order is over £50, so there's no postage charge!</em></span></div>
+		<div class="tea-price">&nbsp;</div>
+		<div class="tea-quantity">&nbsp;</div>
+		<div class="tea-total strikethrough">£3.00</div>
+	  </div>
+	{% else %}
+	  <div class="basket-row postage">
+		<div class="tea-name"><em>Postage <span class="small"><br/>(First Class)</span></em></div>
+		<div class="tea-weight"><em>Delivered in 1-2 days<br/><span class="small">Shipped from the UK</span></em></div>
+		<div class="tea-price">&nbsp;</div>
+		<div class="tea-quantity">&nbsp;</div>
+		<div class="tea-total">£3.00</div>
+	  </div>
+	{% endif %}
+	</div>
+	<div id="totals">
+		<div class="label">Total:</div><div class="total">£{{ total_price }}</div>
+	</div>
+	<br clear="all"/>
+
+
+
+			
+  </div>
+
+	<div id="left">
+
+		<h2>Buyer protection</h2>
+		<p>Your online safety is extremely important to us too. Your purchase has these guarantees:</p>
+		<ul>
+		  <li><strong>Returns policy:</strong> we operate a 'no questions asked' returns policy. If you're not happy with your order, just get in touch.</li>
+		  <li><strong>Safe payments:</strong> payments are taken via Paypal. We never see your credit card details, and your online payment is secured by the highest standard industry technology.</li>
+		  <li><strong>Fast delivery:</strong> we ship each order immediately from within China, so you'll receive your order within a few days.</li>
+		</ul>
+
+	</div>
+
+ 
+
+{% else %}
+  <div id="basket">
+	<p>There's nothing in your basket - add something, quick! <br/><a href="{% url products %}">&raquo; Browse our selection of Christmas cards here now!</a></p>
+  </div>
+	<div class="did-you-know">
+	<a href=""><span class="link"></span></a>
+	<h3>The last post date is 4 December! <span class="grey">Find out more &raquo;</span></h3>
+	</div>
+
+{% endif %}
+
+  </div>
+</div>
+{% endblock %}

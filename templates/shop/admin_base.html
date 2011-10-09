@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block extracss %}
+  <style type="text/css">
+      table {border: 1px solid #E1E1E1;font-family: helvetica,sans-serif;font-size: 12px;}
+      td { padding:5px 10px;}
+      td ul {padding:0; margin:0;}
+      td ul li {list-style-type:none;}
+      thead {font-weight: bold; background-color: #e1e1e1;}
+      h3 {margin: 30px 0 20px 0;}
+      div.small-box {background-color: #F1F1F1; float: left; margin: 20px 10px 0 0; padding: 15px 20px; width: 200px; -moz-border-radius: 10px;}
+      div.small-box h3 {margin-top: 0px;}
+  </style>
+{% endblock %}
+
+{% block pagetitle %}Admin Stuff{% endblock %}
+
+{% block ga %}{% endblock %}
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+    <h1>Admin pages</h1>
+    <a href="/admin/">Login to admin interface</a>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">
+
+
+<p></p>
+<h3>Orders ({{ orders.count }})</h3>
+	<table id="orders-table">
+		<thead>
+			<tr>
+			<td>Order ID</td>
+			<td>Items</td>
+			<td>Owner</td>
+			<td>Status</td>
+			<td>Date paid</td>
+			<td>&nbsp;</td>
+			<td>Value</td>
+			</tr>
+		</thead>
+	{% for order, items in all_orders %}
+		<tr>
+			<td><a href="{% url admin_order order.id %}">{{ order }}</a></td>
+			<td>
+				<ul>
+				{% for item in items %}
+					<li>{{ item }}</li>
+				{% endfor %}
+				</ul>
+			</td>
+			<td><a href="{% url admin_shopper order.owner.id %}">{{ order.owner }}</a></td>
+			<td>{{ order.status }}</td>
+			<td>{{ order.date_paid }}</td>
+			<td>
+				{% if order.status == 'shipped' %}
+				  {% if order.review_email_sent %}
+				     review email sent
+				  {% else %}
+				    {% if order.ready_to_send_review %}
+   				     <a href="{% url send_review_email order.id %}">Send review email</a>
+   				    {% endif %}
+				  {% endif %}
+				{% else %}
+				<a href="{% url ship_it order.id %}">Ship it</a>
+				{% endif %}
+				<br/>
+				{% if order.sampler_email_sent %}
+					{% if order.sampler_sent %}
+					sampler sent
+					{% else %}
+					sampler email sent
+					{% endif %}
+				{% else %}
+				  {% if order.ready_to_send_sampler_email %}
+					<a href="{% url send_sampler_email order.id %}">Send sampler email</a>
+				  {% endif %}
+				{% endif %}
+			</td>
+			<td>
+ 				{{ order.get_amount }}
+			</td>
+		</tr>
+	{% empty %}
+		<p>No current paid orders</p>
+	{% endfor %}
+	</table>
+
+<h3>Giveaways ({{ orders.count }})</h3>
+	<table id="orders-table">
+		<thead>
+			<tr>
+			<td>Order ID</td>
+			<td>Items</td>
+			<td>Notes</td>
+			<td>Date given</td>
+			<td>Value</td>
+			</tr>
+		</thead>
+	{% for order, items in all_giveaways %}
+		<tr>
+			<td><a href="{% url admin_order order.id %}">{{ order }}</a></td>
+			<td>
+				<ul>
+				{% for item in items %}
+					<li>{{ item }}</li>
+				{% endfor %}
+				</ul>
+			</td>
+			<td>{{ order.notes }}</td>
+			<td>{{ order.date_paid }}</td>
+
+			<td>
+				{{ order.get_amount }}
+			</td>
+		</tr>
+	{% empty %}
+		<p>No current paid orders</p>
+	{% endfor %}
+	</table>
+
+	
+	
+
+<div class="small-box">
+<h3>Stocks</h3>
+{% for product in products %}
+	{{ product }}<br/>
+{% endfor %}
+</div>
+
+<div class="small-box">
+<h3>Stats</h3>
+£{{ total_sales }} ({{ orders.count }} orders)<br/>
+{{ total_baskets.count }} baskets<br/>
+{{ total_orders.count }} not completed orders<br/>
+{{ total_shoppers.count }} shoppers<br/>
+{{ giveaways.count }} giveaways
+</div>
+
+<div class="small-box">
+<h3>Photos</h3>
+<p>{{ unpublished_photos.count }} unpublished photos</p>
+<p>{{ published_photos.count }} published photos</p>
+</div>
+
+  </div>
+</div>
+{% endblock %}

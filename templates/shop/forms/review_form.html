@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load django_static %}
+{% load thumbnail %}
+
+{% block extracss %}
+<style type="text/css">
+
+div#main-text-wide div#left, div#main-text-wide div#right {
+  margin-top: 20px;	
+}
+
+div.other-reviews {
+  margin-top: 0px;
+  float: left;	
+}
+
+textarea {
+    border-radius: 10px 10px 10px 10px;
+    padding: 15px;
+    width: 500px;
+    font-size: 16px;
+}
+
+div#submit-button {
+position: relative;
+top: 240px;	
+}
+
+#facebook {
+  float: left;
+  width: 80px;
+}
+
+#google {
+  margin-bottom: 10px;
+  float: left;
+  width: 80px;
+}
+
+div.rss {
+  width: 700px;
+}
+
+div.rss p {
+  float: left; 
+  font-size: 11px;
+  color: #666;
+}
+
+</style>
+{% endblock %}
+
+{% block metadescription %}Write a review for {{ tea }} tea{% endblock %}
+
+{% block pagetitle%}Write a review{% endblock %}
+
+
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+  	<h1>Write a review for {{ tea }} tea</h1>
+  	<p class="subtitle">Thanks for taking the time to write a review. Quality is extremely important to us, so feel free to write down any thoughts, positive or negative, about your tea.</p>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">
+  
+      <div class="rss">
+		<div id="google">
+			<g:plusone></g:plusone>
+			<script type="text/javascript">
+			  (function() {
+			    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			    po.src = 'https://apis.google.com/js/plusone.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			  })();
+			</script>
+		</div>
+    	<div id="facebook">
+		    <div id="fb-root"></div>
+		    <script src="http://connect.facebook.net/en_US/all.js#appId=234100573279411&amp;xfbml=1"></script>
+		    <fb:like href="http://www.minrivertea.com/teas/{{ tea.slug }}" send="false" layout="button_count" width="80" show_faces="true" font="">
+		    </fb:like>
+		</div>
+		<p>&laquo; If you liked your tea, please tell your friends about it!</p>
+	</div>		
+		
+	  <div id="basket">
+	  	<form action="." method="post">
+	  		<div id="submit-button">
+			<p>* <em>we may publish this review on our website - by submitting your review, you give us permission to do so.</em></p>
+			<input class="submit-button" value="" type="submit">
+			</div>
+		<div class="row">
+		
+			<div class="row-box">
+			<textarea id="id_text" rows="10" cols="40" name="text" onclick="clearInput(this)">Add your review here</textarea>
+			</div>
+			
+			<div class="row-box">
+			<input type="text" name="first_name" id="id_first_name" />
+			<label for="id_first_name">First name</label>
+			
+			<input type="text" name="last_name" id="id_last_name" />
+			<label for="id_last_name">Last name</label>
+			 
+			<input type="text" name="email" id="id_email" />
+			<label for="id_email">Email address</label>
+			</div>
+			
+
+			
+		</form>		
+		</div>
+		</div>
+		
+		<div id="left">
+		
+
+		
+		{% if other_reviews %}
+		<div class="other-reviews">
+			<h3>What have other people said about our  {{ tea }}?</h3>
+			{% for review in other_reviews %}
+				<div class="review">
+					<p><em>"{{ review.short_text }}"</em> <span>{{ review.first_name }} {{ review.last_name }}</span></p>
+				</div>				
+			{% endfor %}
+		</div>
+		{% endif %}
+
+	</div>
+  </div>
+</div>
+	
+
+		
+
+    {% endblock %}

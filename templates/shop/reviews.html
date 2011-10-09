@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block metadescription %}Reviews and testimonials about our Chinese tea from our happy customers!{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+div#main-text-wide div#left {
+  margin-top: 20px;	
+}
+
+div#main-text-wide div#right {
+  margin-top: 20px;	
+}
+
+
+</style>
+
+{% endblock %}
+
+
+{% block pagetitle %}What our customers say about the Min River Tea Farm{% endblock %}
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+  	<h1>What our customers are saying</h1>
+  	<p class="subtitle">Testimonials and reviews from happy customers who've bought our tea recently.</p>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">
+	
+	
+
+	<div id="left">
+		{% for review in reviews %}
+		<p>{{ review.short_text }}<br/><span class="red">{{ review.first_name }} {{ review.last_name }}</span></p>
+		{% endfor %}
+	<div class="did-you-know">
+	<a href="/teas/jasmine-pearls/"><span class="link"></span></a>
+	<h3>Looking for a birthday gift?</h3>
+	<p>Our Jasmine Pearls tea makes a great present for friends and relatives. It has a beautiful and memorable fragrance, and the distinct flavour agrees with all different tastes.</p>
+	</div>
+	
+	</div>
+	
+	<div id="right">
+		<div class="user-photos">
+			{% for p in photos %}
+				<div class="a-user-photo">
+					<div class="photo">
+						{% thumbnail p.photo "90x90" crop="center" as im %}
+						<img title="{{ p.shopper.first_name }} drinks {{ p.related_product.name }} tea" src="{{ im.url }}">
+						{% endthumbnail %}
+					</div>
+				</div>
+			{% endfor %}
+			<br clear="all"/>
+			<p>* <em>Want to see your photo here? <a href="mailto:chris@minrivertea.com">Send us a picture</a> of you drinking tea, and we'll donate £1 to <a href="http://www.mind.org.uk">Mind UK</a> for every photo we receive.</em></p>
+		</div>
+	</div>
+  </div>
+</div>
+{% endblock %}
+

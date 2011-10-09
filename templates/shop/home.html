@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block pagetitle %}Buy Christmas cards in China{% endblock %}
+
+{% block metadescription %}Can't find Christmas cards in China? We sell cards and deliver them to your door, so you'll always be able to send a real card back home.{% endblock %}
+
+
+{% block extracss %}
+<style type="text/css">
+
+div#top {
+  height: 180px;
+  padding: 10px 0 0px;
+  margin: 30px 0 10px;
+  float: left;
+  width: 860px;
+}
+
+div#top h3 {
+	margin-bottom: 0;	
+}
+
+div#top h3 a {
+  font-weight: bold;
+  font-size: 67px;
+  color: #439249;
+
+}
+
+div#top p {
+    font-size: 13px;
+    margin: 0;
+    width: 300px;
+}
+
+div#top div.left span.link, div#top div.right span.link {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+div#top div.left {
+  width: 410px;
+  float: left;
+  text-align: right;
+  margin-right: 30px;
+  padding-right: 20px;
+  border-right: 1px solid #53a172;	
+  position: relative;
+}
+
+div#top div.left:hover h3 a, div#top div.right:hover h3 a {
+  color: #ff8585;	
+  cursor: pointer;
+}
+
+div#top div.left p a, div#top div.right p a {
+  z-index: 4;
+  position: relative;	
+}
+
+div#top div.left p {
+  float: right;	
+}
+
+div#top div.right {
+  width: 380px;
+  float: left;
+  text-align: left;	
+  position: relative;
+}
+
+div#feature {
+    float: left;
+    height: 230px;
+    margin: 0 0 0;
+    padding-bottom: 0;
+    width: 100%;
+    display: ;
+}
+
+div#feature div.top {
+    float: left;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    position: relative;
+    top: 60px;
+    width: 700px;
+}
+
+div#feature div.top h1 {
+    color: #be2121;
+    font-size: 50px;
+    margin: 10px 0 10px 0;
+    text-align: left;
+    text-shadow: 0 3px 2px #fff;
+}
+
+#feature h1 span {
+  color: #000;	
+}
+
+div#feature div.top p {
+  text-align: left;
+  margin: 0;	
+  float: left;
+  padding: 0 0 0 0px;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+}
+
+div#feature div.top a.button {
+    float: right;
+    font-size: 18px;
+    margin-left: -5px;
+    margin-top: 20px;
+    padding-bottom: 12px;
+    padding-top: 15px;
+    text-align: center;
+    width: 300px;
+    color: #BE2121;
+}
+
+div#feature div.top a.button:hover {
+	
+}
+
+div#feature div.top div.button a:hover {
+  background-position: center left;	
+  cursor: pointer;
+}
+
+div#feature div.top div.button a:active {
+  background-position: bottom left;	
+  cursor: pointer;
+}
+
+div#feature span.link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index:2;	
+}
+
+
+div#home-extra div.box {
+  width: 185px;
+  height: 160px;
+  float: left;
+  background-color: #f1f1f1;	
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+  box-shadow: 0 1px 2px #c1c1c1;
+}
+
+div#home-extra div.box.last {
+  margin-right: 0;	
+}
+
+div#home-extra div.box h4 {
+  font-size: 14px;	
+  border-bottom: none;
+}
+
+#products {
+    background-color: #F1F1F1;
+    float: left;
+    padding: 40px 0 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#products ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;	
+}
+
+#products ul li {
+  float: left;
+  width: 300px;
+  margin-right: 20px;
+  position: relative;	
+}
+
+#products li img {
+  border: 5px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 8px #666;
+  margin-bottom: 20px;	
+}
+
+#products .price {
+  position: absolute;
+  top: 430px;	
+}
+
+#products span.description {
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2em;
+    position: relative;
+    top: -6px;
+    width: 200px;
+}
+
+#products a.button {
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  width: 150px;	
+  font-size: 16px;
+}
+
+#products .number {
+  font-weight: bold;
+  font-size: 40px;
+  float: left;
+  color: #439249;
+  display: block;
+  margin-right: 10px;
+  text-shadow: 0 2px 2px #fff;	
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<div id="feature">
+  <div class="super">
+	<div class="top">
+		<h1>Christmas cards in China? <span>Your search is over.</span></h1>
+		<p>Send cards home to your loved ones this Christmas, from China. Just because you're 10,000 miles away, doesn't mean Christmas isn't happening. </p>	
+	</div>
+  </div>
+</div>
+
+
+<div id="products">
+  <div class="super">
+  	<ul>
+	{% for product in products %}
+		<li>
+			{% thumbnail product.parent_product.image "280" crop="center" as im %}
+				<a href="{% url product_view product.parent_product.slug %}"><img src="{{ im.url }}"/></a>
+			{% endthumbnail %}
+				<h3><a href="{% url product_view product.parent_product.slug %}">{{ product.parent_product.name }} &raquo;</a></h3>
+				<p>{{ product.parent_product.description }}</p>
+				<div class="price">
+					<span class="number">{{ product.price_unit }}{{ product.price|floatformat }}</span>
+					<span class="description">{{ product.description }}</span>
+					<a class="button" href="{% url add_to_basket product.id %}">Add to basket</a>
+				</div>
+		</li>
+	{% endfor %}
+	</ul>	
+  </div>
+</div>
+
+<div class="super">
+	
+</div>
+
+
+
+
+
+{% endblock %}

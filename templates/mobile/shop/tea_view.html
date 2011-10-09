@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block metadescription %}{% if tea.meta_description %}{{ tea.meta_description|safe }}{% else %}{{ tea.name }} - {{ tea.description|safe }}{% endif %}{% endblock %}
+{% block pagetitle %}{{ tea.meta_title }}{% endblock %}
+
+{% block extrajs %}
+<script>
+
+</script>
+
+{% endblock %}
+
+{% block extracss %}
+
+<style type="text/css">
+#main-image {
+  float: left;
+  width: 100%;
+}
+
+#main-image img {
+  margin-left: 7%;
+  -webkit-border-radius: 5px;	
+}
+
+.description {
+  margin-left: 7%;
+  float: left;
+  width: 87%;	
+  line-height: 1.6em;
+}
+
+#prices {
+  width: 93%;
+  float: left;
+  margin: 0 0 10px 7%;	
+}
+
+#prices a {
+  width: 85%;
+  background-color: #e2eede;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 12px 12px;	
+  margin-bottom: 10px;
+  float: left;
+  color: #555;
+}
+
+#prices a .price {
+  font-weight: bold;
+  color: #439249;	
+}
+
+#prices a .button {
+  float: right;
+  margin-right: 0px;
+  font-weight: bold;
+  color: #439249;	
+}
+
+</style>
+{% endblock %}
+
+{% block message %}
+	{% if message %}
+	<div id="message">
+		<p>1 x {{ thing.item.parent_product.name }} ({{ thing.item.weight }}{{ thing.item.weight_unit }}) added!</p>
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block banner %}
+<h1>{{ tea.name }} Chinese tea</h1>
+{% endblock %}
+
+{% block content %}
+
+
+<div id="main-image">
+	{% thumbnail tea.image "280x210" crop="center" as im %}
+		<img src="{{ im.url }}"/>
+	{% endthumbnail %}
+</div>
+		
+<div class="description">{{ tea.body_text|safe }}</div>
+
+
+<div id="prices">
+	{% if tea.coming_soon %}
+	 	<div class="coming-soon">
+		</div>
+	{% else %}
+		{% for price in prices %}
+			<a href="{% url add_to_basket price.id %}">
+				<span class="price"> {{ price.price_unit}}{{ price.price|floatformat }}</span>
+				/{{ price.weight|floatformat }}{{ price.weight_unit }}
+				<span class="button">Add to basket</span>
+			</a>
+		{% endfor %}
+	{% endif %}
+</div>
+
+	           	
+<div id="choices">
+	<a href="">View customer reviews ({{ reviews.count }})</a>
+	<a href="">More photos of this tea</a>
+	<a href="">Brewing guides</a>
+</div>  
+
+
+	
+
+{% endblock %}

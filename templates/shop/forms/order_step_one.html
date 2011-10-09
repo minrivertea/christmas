@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block pagetitle %}Order (Step 1 of 3) - Your details{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+
+div#main-text-wide  {
+  margin-top: 30px;	
+}
+
+div#main-text-wide div#left {
+  margin-top: 20px;	
+}
+
+div#main-text-wide div#right {
+  margin-top: 30px;	
+}
+
+div#main-text-wide div#left h3 {
+    font-size: 18px;
+    font-weight: 900;
+    margin: 0 0 -10px;
+}
+
+div#basket div.security {
+  float: right;
+  width: 220px;	
+}
+
+div#basket div.security img {
+  position: relative;
+  top: 13px;	
+}
+
+input.checkbox {
+    float: left;
+    margin-bottom: 50px;
+    margin-right: 12px;
+    width: 20px;
+}
+
+p.checkbox {
+  font-size: 12px;
+  margin-bottom: 500px;	
+}
+
+p.help-text {
+    float: left;
+    font-size: 0.7em;
+    padding-left: 130px;
+    position: relative;
+    top: -8px;
+    width: 300px;
+}
+
+p.help-text img {
+  position: relative;
+  top: 3px;	
+}
+
+div.address-container {
+    float: left;
+    margin-left: 20px;
+    width: 500px;
+}
+
+div.address-container p {
+  font-size: 15px;
+  margin: 10px 0px 20px 0;	
+}
+
+div.address {
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 0px 0px;
+    width: 215px;
+    -moz-border-radius: 10px;
+    font-size: 12px;
+}
+
+div.address h3 {
+  font-size: 1.4em;	
+  margin-bottom: 15px;
+}
+
+div.address a {
+  font-size: 13px;	
+}
+
+div.address.first {
+    margin-right: 0;
+    width: 480px;
+    font-size: 16px;
+}
+
+div.address.other {
+  background: #fff;
+  width: 500px;
+  padding: 0;
+  display: none;
+}
+
+div.address label {
+  width: 500px;
+  font-size: 14px;	
+}
+
+p.hint {
+    color: #999;
+    font-family: "helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1em;
+    margin: 0;
+}	
+
+label.red {
+  color: red;	
+}
+
+p.red {
+  color: red;
+  margin-top: 0;	
+}
+
+span.red {
+  color: #d11010;	
+}
+
+span.country {
+  float: left;
+  width: 280px;
+  padding: 10px 15px;	
+}
+
+input.button {
+  width: 200px;	
+  color: #fff;
+  font-family: Helvetica, sans-serif;
+  border: none;
+  padding: 13px 15px;
+  height: auto;
+  font-size: 16px;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div id="main-text-wide">
+  <div class="super">
+
+	
+	<div id="basket">
+	
+		<h1>Step 1/3 - Please provide your details</h1>
+	
+    <form method="post" action="">
+		
+		
+	<div class="row">
+
+    	<div class="row-box">
+    		{% if form.first_name.errors or form.last_name.errors or form.email.errors %}
+    		<ul class="errorlist"><li>* you must provide all your details - thanks!</li></ul>
+    		{% endif %}
+    		<p class="intro">Please give your name and email address for contact purposes: </p>
+
+    		<p><input  class="{% if form.first_name.errors %}red{% endif %}" type="text" name="first_name" id="id_first_name" value="{{ first_name }}"/><label for="id_first_name"><span class="red">*</span> First name</label></p>
+    		<p><input class="{% if form.last_name.errors %}red{% endif %}" type="text" name="last_name" id="id_last_name" value="{{ last_name }}"/><label for="id_last_name"><span class="red">*</span> Surname</label></p>
+    		<p><input class="{% if form.email.errors %}red{% endif %}" type="text" name="email" id="id_email" value="{{ email }}"/><label for="id_email"><span class="red">*</span> Email address</label></p>	
+    	</div>
+    </div>
+    
+	
+	<div class="row">
+    	<div class="row-box">
+    	{{ form.non_field_errors }}
+    		<p class="intro">Please give your address, where we should send your cards (in Chinese). </p>
+    		
+
+      <p>
+      	<input id="id_house_name_number" type="text" name="house_name_number" maxlength="200" value="{{ house_name_number }}"/>
+      	<label for="id_house_name_number"><span class="red">*</span> House name number:</label>
+      	</p>
+	  	{{ form.address_line_1.error }}
+	  
+	  <p>
+	  	<input id="id_address_line_1" type="text" name="address_line_1" maxlength="200" value="{{ address_line_1 }}"/> 
+	 	    <label for="id_address_line_1">Address line 1:</label>
+	  </p>
+      	{{ form.address_line_2.errors }}
+      	
+      <p>
+      	
+      	<input id="id_address_line_2" type="text" name="address_line_2" maxlength="200"  value="{{ address_line_2 }}"/>
+      	<label for="id_address_line_2">Address line 2:</label>
+      	</p>
+      	{{ form.town_city.errors }}
+      
+      <p>
+      	
+      	<input id="id_town_city" type="text" name="town_city" maxlength="200" value="{{ town_city }}"/> 
+      	<label for="id_town_city">Town / City:</label>
+      	</p>
+      	{{ form.postcode.errors }}
+      	
+      <p>
+      	
+      	<input id="id_postcode" type="text" name="postcode" maxlength="200" value="{{ postcode }}" /> 
+      	<label for="id_postcode"><span class="red">*</span> ZIP Code:</label>
+      	</p>
+      	
+
+ 	</div> 
+	</div>
+
+
+	<div id="checkout-button">
+		<p><strong>Next step:</strong> 
+		<em>Confirm your order. We'll let you check your order, and then you can pay using Paypal.</em>
+		</p>
+		<input type="submit" value="Confirm your details &raquo;" next="" class="button"/>
+	</div>
+		
+	</form>
+
+
+	</div>
+
+  </div>
+</div>
+
+{% endblock %}

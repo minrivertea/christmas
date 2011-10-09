@@ -1,0 +1,8 @@
+Hi {{ first_name }},
+
+Thanks for submitting a photo to our wall of tea lovers! We're really excited that you love tea too, it's always nice to meet a fellow fanatic. 
+
+If your photo is published, we'll donate GBP1 to Mind UK on your behalf. Mind UK is an organisation that works to help improve conditions for people with mental health issues in the UK. Read more about their work here - http://www.mind.org.uk/about
+
+Chris West
+Founder, Min River Tea Farm

@@ -1,0 +1,1136 @@
+html {
+  border: none;
+  margin: none;
+  padding: none;	
+}
+
+body {
+  font-weight: 0.9em;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #666;
+  background-color: #f1f1f1;
+}
+
+div#super, .super {
+  width: 960px;
+  margin: 0 auto;	
+  position: relative;
+}
+
+h3 {
+    color: #333;
+    font-weight: normal;
+    margin: 0 0 5px;
+    font-size: 24px;
+}
+
+div#main-text-wide div#left h3 {
+    color: #222222;
+    font-family: "helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin: 30px 0 5px;
+}
+
+
+
+div#main-text-wide div#left p {
+  margin-top: 0;
+  margin-bottom: 20px;	
+}
+
+h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+
+a img {
+  border: none;	
+}
+
+a img:hover {
+  opacity: 0.8;	
+}
+
+a {
+  text-decoration: none;	
+}
+
+a:link, a:visited {
+  color: #BE2121;
+}
+
+a:hover, a:active {
+  color: #ffaeae;
+}
+
+ul {
+  list-style-type: square;	
+}
+
+ul, ol {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.8em;	
+}
+
+ol {
+  font-weight: italic;	
+  font-size: 12px;
+}
+
+.button {
+    background: none repeat scroll 0 0 #439249;
+    border-radius: 0 7px 0 7px;
+    color: #2D7886;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 7px;
+    text-align: center;
+}
+
+div#container {
+  float: left;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+
+div#footer {
+    background-color: #FFFFFF;
+    float: left;
+    height: auto;
+    margin-top: 180px;
+    padding: 20px 0 80px;
+    width: 100%;
+}
+
+ul.footer-links {
+  width: 960px;
+  float: left;
+  margin-left: 50px;
+  padding-left: 0;
+  margin-bottom: 80px;	
+}
+
+ul.footer-links li {
+  display: inline;
+  color: #333;
+  font-size: 0.9em;
+}
+
+ul.footer-links li a {
+  color: #fff;	
+}
+
+div.payments {
+  margin-left: 0px;
+  margin-top: 20px;
+  float: left;
+  width: 250px;
+}
+
+div.payments p {
+  font-size: 0.8em;	
+  width: 250px;
+  margin-left: 0px;
+}
+
+div.footer-box {
+  margin-right: 40px;
+  margin-top: 0px;
+  float: left;
+  width: 260px;
+}
+
+div.footer-box h4 {
+  font-family:	"helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+  letter-spacing: -1px;
+  font-weight: bold;
+  color: #333;
+}
+
+div.footer-box p {
+  font-size: 0.8em;	
+  width: 250px;
+  margin-left: 0px;
+}
+
+div.footer-box ul {
+  width: 100%;	
+  padding-left: 15px;
+}
+
+div.footer-box ul li {
+  font-size: 13px;
+    color: #EE6464;
+    margin-bottom: 5px;
+    list-style-type: square;
+}
+
+/* typography */
+
+h1 {
+    color: #BE2121;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin: 0 0 5px;
+    padding-bottom: 0;
+}
+
+h2 {
+    color: #333333;
+    font-size: 26px;
+    letter-spacing: -1px;
+    margin: 0 0 5px;
+    padding-bottom: 0;
+}
+
+h2.black {
+  color: #333;	
+}
+
+div#user-photos h2 {
+  margin-bottom: 15px;	
+  font-size: 1.4em;
+}
+
+
+p {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6em;
+}
+
+p.intro {
+    color: #666666;
+    font-size: 15px;
+    margin: -10px 0 25px;
+}
+
+div.left p {
+  margin: 5px 0 20px 0px;
+  font-size: 15px;
+  line-height: 1.8em;
+  padding-right: 10px;
+}
+
+/* header styles */
+
+div#header {
+  float: left;
+  height: 110px;
+  width: 100%;
+  background-color: #fff;
+}
+
+div#header-messages {
+    font-size: 12px;
+    height: 30px;
+    margin: 0 auto;
+    width: 960px;
+}
+
+div#header-messages div.hm {
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    background-color: #e1e1e1;
+    width: auto;
+    float: right;
+    padding: 5px 20px 7px 20px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+div#logo {	 
+ width: 400px;
+ height: 150px;
+ background: url("/images/logo.png") no-repeat scroll 0 0 transparent;
+ float: left;
+ margin: 10px 0 0 0px;
+ position: relative;
+}
+
+div#logo a {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;	
+}
+
+div#logo a span {
+  display: none;	
+}
+
+div#logo:hover {
+  opacity: 0.8;	
+  
+}
+
+div#home-banner {
+    float: right;
+    margin: 45px 0px 0 0;
+    text-align: right;
+    width: 560px;
+}
+
+p.subtitle {
+    color: #333333;
+    letter-spacing: 0;
+    margin: 0px;
+    width: 600px;
+}
+
+
+#navigation {
+  float: right;
+  margin: 55px 0px 0;	
+  width: 500px;
+}
+
+ul#nav {
+    color: #EE6464;
+    float: left;
+    margin: 0;
+    padding-left: 0;
+    float: right;
+    list-style-type: none;
+}
+
+ul#nav li {
+  float: left;
+}
+
+ul#nav li:not(:last-child) a {
+
+}
+
+ul#nav li a {
+    display: block;
+    float: left;
+    padding: 0px 13px;
+    color: #439249;
+    font-weight: bold;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+ul#nav li a:hover {
+  color: #be2121;
+  text-decoration: underline;
+}
+
+ul#nav li a.selected:hover {
+    color: #439249;	
+}
+
+ul#nav li a.selected {
+    color: #333;
+}
+
+
+/* right navigation styles */
+ul#right-nav {
+  list-style-type: none;
+  padding: 0;	
+  float: left;
+  width: 245px;
+}
+
+ul#right-nav li {
+  font-family: "helveticaneue","helvetica neue","helveticaneueroman","helveticaneue-roman","helvetica neue roman","helvetica","arial",'texgyreherosregular',"tahoma","geneva",sans-serif;
+  font-size: 12px;	
+  font-weight: bold;
+}
+
+ul#right-nav li a {
+  -moz-transition-duration: 300ms;
+  -moz-transition-property: background;
+  background-color: #f6f6f6;
+  padding: 5px 5px 5px 20px;
+  display: block;
+  margin-bottom: 2px;
+  color: #666;  	
+}
+
+ul#right-nav li a.selected {
+  color: #197621;  	
+  background-color: #E0F1E4;
+}
+
+ul#right-nav li a:hover {
+  color: #197621;  	
+  background-color: #E0F1E4;
+}
+
+ul#right-nav ul.subnav {
+  list-style-type: square;
+  padding-left: 10px;
+  margin-left: 20px;	
+}
+
+ul#right-nav ul.subnav li a {
+  background-color: #fff;
+  font-size: 11px;
+  padding: 3px;
+  padding-left: 10px;
+  margin: 0;
+  border-bottom: 2px dotted #e1e1e1;
+}
+
+ul#right-nav ul.subnav li a.last {
+  border-bottom: none;	
+  margin-bottom: 2px;
+}
+
+
+ul#right-nav ul.subnav ul.subsubnav {
+  list-style-type: none;
+  padding-left: 10px;
+  margin-left: 5px;	
+  border-bottom: 2px dotted #e1e1e1;
+}
+
+ul#right-nav ul.subnav ul.subsubnav li a {
+  font-weight: normal;	
+  border-bottom: none;
+}
+
+ul#right-nav ul.subnav ul.subsubnav li a.selected {
+  font-weight: bold;	
+}
+
+/* end rightnav styles */
+
+
+/* content page styles */
+
+div#banner {
+    background-color: #F1F1F1;
+    float: left;
+    margin: 20px 0 0 0;
+    padding: 20px 0 10px;
+    width: 100%;
+}
+
+div#banner p {
+  font-size: 14px;	
+}
+
+div#main-text-wide {
+  width:100%;
+  float:left;
+  margin-left: 0px;
+  margin-bottom: 80px;
+}
+
+div#main-text-wide div#left {
+    float: left;
+    margin: 0 10px 20px 0px;
+    width: 660px;
+}
+
+div#main-text-wide div#right {
+    float: right;
+    padding-left: 20px;
+    width: 240px;
+}
+
+p.introduction {
+    color: #30A5C7;
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* tea listing styles */
+
+div#teas {
+  margin-top: 30px;	
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 3px dotted #e1e1e1;
+  float: left;
+}
+
+div.tea-promo {
+    float: left;
+    margin: 0 30px 20px 0px;
+    padding: 0px 0px 20px 0px;
+    position: relative;
+    width: 780px;
+}
+
+div.tea-promo.last {
+  margin-right: 0;	
+}
+
+
+div.tea-promo:hover {	
+  cursor: pointer;
+}
+
+div.tea-promo div.image {
+    float: left;
+    margin-right: 20px;
+    width: 270px;
+}
+
+div.tea-promo:hover div.image img {
+  opacity: 0.8;	
+}
+
+div.tea-promo div.text {
+  width: 480px;
+  float: left;
+  margin-top: 10px;	
+}
+
+div#main-text-wide div#left div.tea-promo div.text p {
+  margin: 0 0 0 0;	
+}
+
+div.tea-promo span.link {
+  position:absolute;
+  width:100%; 
+  height:100%; 
+  top:0; 
+  left: 0; 
+  z-index: 1;	
+}
+
+div.tea-promo a.add-to-basket {
+  background: url('/images/price-back-small.png') no-repeat top;
+  width: 108px;
+  height: 25px;
+  position: relative;
+  float:left;	
+  margin-right: 10px;
+  z-index: 2;
+}
+
+div.tea-promo a.more-details {
+  background: url('/images/more-details.png') no-repeat top;
+  width: 108px;
+  height: 25px;
+  position: relative;
+  float:left;
+    z-index: 2;	
+}
+
+div.tea-promo:hover a.more-details {
+  background: url('/images/more-details.png') no-repeat center;
+}
+
+div.tea-promo:hover a.add-to-basket {
+  background: url('/images/price-back-small.png') no-repeat center;	
+}
+
+div.tea-promo a.add-to-basket:hover {
+  background: url('/images/price-back-small.png') no-repeat bottom;
+}
+
+div.tea-promo a.more-details:hover {
+  background: url('/images/more-details.png') no-repeat bottom;
+}
+
+
+div.tea-promo h4 {
+    border-bottom: medium none;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+div.tea-promo h4 a {
+  color: #439249;
+}
+
+div.tea-promo:hover h4 a {
+  text-decoration: underline;	
+}
+
+
+div.tea-promo p {
+    color: #333333;
+    font-size: 14px;
+    margin: 0;
+}
+
+
+
+div#right p {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-size: 13px;	
+}
+
+div#right p.small {
+  font-size: 11px;
+}
+
+
+div.price-text span {
+  font-size:13px;
+}
+
+
+
+img.tea-promo {
+    border-radius: 8px;
+    margin-bottom: 0px;
+    margin-right: 0;
+    border: 5px solid #fff;
+    box-shadow: 0 1px 3px #999;
+}
+
+
+/* tea page styles */
+
+
+span.grey {
+  color: #666;	
+  font-weight: normal;
+}
+
+span.lightgrey {
+  color:#e1e1e1;	
+}
+
+.small {
+  font-size: 0.7em;	
+}
+
+
+
+
+
+/* SHOPPING BASKET PAGE STYLES */
+
+#checkout-button {
+  float: right;
+  width: 200px;	
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+#checkout-button p {
+  font-size: 12px;
+  text-align: right;	
+}
+
+#checkout-button a.button {
+  padding: 13px 15px;
+  color: #fff;
+  font-size: 19px;
+  width: 200px;
+  float: right;	
+}
+
+
+
+div.row {
+    float: left;
+    margin-bottom: 20px;
+    padding: 0px;
+    width: 660px;
+}
+
+div.row.wide {
+    margin: 20px 0 20px 0;
+    padding: 15px 20px 10px 20px;
+    width: 760px;
+}
+
+div.row.wide ul li {
+  color: #1A6D18;
+  list-style-type: square;	
+}
+
+div.row-label {
+  float: left;
+  width: 100%;
+  color: #d95b5e;
+  font-size: 1.1em;
+  margin-bottom: 0px;
+}
+
+div.row-label h3 {
+    color: #19761C;
+    font-size: 1.3em;
+    font-weight: normal;
+    margin: 0;
+}
+
+div.row-box {
+  float: left;
+  margin: 0px 0 10px 0px;	
+  padding-top: 5px;
+}
+
+div.row-box table {
+  font-size: 14px;	
+}
+
+div.row-box table td {
+  padding-bottom: 10px;	
+}
+
+div.row-box input {
+    border-color: #D1D1D1;
+    border-radius: 7px 7px 7px 7px;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    float: left;
+    font: 14px arial,helvetica,clean,sans-serif;
+    height: 20px;
+    margin: 0 0 20px 0;
+    padding: 10px 15px;
+    width: 350px;
+}
+
+div.row-box input:focus {
+  border-color: #6acc75;
+  border-width: 1px;
+  margin-bottom: 19px;
+}
+
+div.row-box label {
+    color: #555555;
+    float: left;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    position: relative;
+    text-align: left;
+    width: 120px;
+}
+
+div.row-box p {
+  margin: 0;	
+}
+
+div.row-box p.intro {
+  margin: 0px 0 25px 0;	
+  color: #333;
+  font-size: 14px;  
+  line-height: 1.4em;
+}
+
+
+
+
+
+/* FORMS LAYOUT */
+
+label {
+    color: #333333;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-left: 0px;
+    float: left;
+    width: 200px;
+}
+
+input {
+  margin-bottom: 10px;
+  height: 20px;
+  width: 300px;	
+  border: 1px solid #D1D1D1;
+  padding: 5px;
+  font-size: 12px;
+}
+
+textarea {
+  width: 300px;	
+  padding: 5px;
+  border: 1px solid #d1d1d1;
+  font-family: "Lucida-Grande", sans-serif;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+ul.errorlist {
+  list-style-type: none;
+  color: red;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;	
+}
+
+
+
+
+
+
+
+/* root element for single scroll */
+	.scroll {
+		position:relative;
+		overflow:hidden;
+		width: 660px;
+		height: 438px;
+		float:left;
+		margin-bottom: 30px;
+	}
+	
+	/* root element for the scroll pics */
+	.scroll .pics {
+		width:20000em;
+		position:absolute;
+		clear:both;
+	}
+	
+	/* single scroll item */
+	.pics div {
+		float:left;
+		cursor:pointer;
+		width:660px !important;
+		height:438px;
+		margin:0px;
+		border-radius: 10px;
+	}
+	
+.pics p {
+    background-color: #FFFFFF;
+    bottom: -20px;
+    color: #333333;
+    float: none;
+    font-size: 12px;
+    opacity: 0.8;
+    padding: 5px 10px;
+    position: absolute;
+    width: 640px;
+}
+
+	.pics span.click {
+	  color: #439249;	
+	}
+	
+	/* possible settings for the active scroll */
+	.scroll.active {
+	
+	}
+
+.did-you-know {
+   position:relative;
+   width:460px;
+   padding: 15px;
+   float: left;
+   color:#fff;
+   background:#f3f3f3;
+   margin-top: 20px;
+   border: 1px solid #e1e1e1;
+   z-index: 3;
+   border-radius: 5px;
+   background-image: -moz-linear-gradient(#f3f3f3, #f9f9f9);
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f3f3f3), to(#f9f9f9));
+   background-image: -webkit-linear-gradient(#f3f3f3, #f9f9f9); 
+   background-image: -o-linear-gradient(#f3f3f3, #f9f9f9);
+}
+
+div#right .did-you-know {
+  width: 190px;
+  margin-top: 0px;
+  padding: 10px;  	
+}
+
+div#right .did-you-know p, .did-you-know-p {
+  font-size: 11px;
+  margin: 0;	
+}
+
+.did-you-know span.link {
+  position:absolute;
+  width:100%; 
+  height:100%; 
+  top:0; 
+  left: 0; 
+  z-index: 1;		
+}
+
+.did-you-know:hover {
+  border: 1px solid #84c37d;
+}
+
+.did-you-know:hover:after {
+  border-bottom: 15px solid #84c37d;	
+}
+   
+
+
+/* this is the background of the arrow */
+.did-you-know:after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-bottom: 15px solid #e1e1e1;         
+        border-top: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        position: absolute;
+        top: -15px;
+        left: 29px;
+        z-index: 1;
+        margin-left: ;
+}
+
+/* this is the foreground of the arrow */
+.did-you-know:before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-bottom: 15px solid hsla(0,0%,95%,1);     
+        border-top: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        position: absolute;
+        top: -14px;
+        left: 30px;
+        z-index: 2;
+        margin-left: -1px;
+}
+
+div#main-text-wide div#left div.did-you-know h3, div.did-you-know h3 {
+    color: #439249;
+    font-family: Helvetica,sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 2px 0 #FFFFFF;
+}
+
+div#main-text-wide div#left div.did-you-know h3 span.grey, div.did-you-know h3 span.grey {
+  text-align: right;
+  font-size: 14px;
+  padding-left: 10px;	
+}
+
+div#main-text-wide div#left div.did-you-know p {
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    line-height: 1.5em;
+}
+
+div#main-text-wide div#left div.did-you-know img {
+  float: left; 
+  margin-right: 10px;
+  position: relative;
+  top: 8px;	
+}
+
+div#comments {
+  border-bottom: 3px dotted #e1e1e1;
+  margin-bottom: 20px;
+  float: left;	
+  width: 660px;
+  padding-bottom: 20px;
+}
+
+div#main-text-wide div#left div#comments h3 {
+    background-color: #F1F1F1;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0 1px 1px #C1C1C1;
+    float: left;
+    font-size: 24px;
+    margin: 10px 0 0 -20px;
+    padding: 15px 45px 15px 30px;
+    position: relative;
+}
+
+div#comments h3:before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-bottom: 30px solid hsla(0,0%,95%,1);     
+        border-top: 0;
+        border-left: 0px solid transparent;
+        border-right: 50px solid transparent;
+        position: absolute;
+        top: -15px;
+        left: 1px;
+        z-index: 2;
+        margin-left: -1px; 
+}
+
+div#comments div#comments-list {
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+div#comments div#comments-list div.comment {
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  float: left;	
+  width: 100%;
+}
+
+div#comments div#comments-list div.comment p {
+  	margin: 0;
+  	padding: 0;
+}
+
+div#comments div#comment-form #form {
+  	float: left;
+  	margin-top: 30px;
+}
+
+div#comments div#comment-form label {
+  width: 100px;	
+}
+
+div#comments div#comment-form input, div#comments div#comment-form textarea {
+  width: 400px;	
+}
+
+div#comments div#comment-form input.submit-preview {
+  display: none;	
+}
+
+div#comments div#comment-form input.submit-post {
+  float: right;
+  width: 200px;
+  padding: 10px 15px;
+  height: 40px;
+  border-radius: 7px;
+  margin-top: 10px;
+   background-image: -moz-linear-gradient(#f3f3f3, #f9f9f9);
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f3f3f3), to(#f9f9f9));
+   background-image: -webkit-linear-gradient(#f3f3f3, #f9f9f9); 
+   background-image: -o-linear-gradient(#f3f3f3, #f9f9f9);
+ font-weight: bold;
+ font-family: Helvetica, sans-serif;
+ font-size: 15px;
+ text-shadow: 0 1px 1px #fff;	
+ position: relative;
+}
+
+div#comments div#comment-form input.submit-post:hover {
+  border-color: #439249;
+  cursor: pointer;
+  color: #439249;
+}
+
+div#main-text-wide div#left div#comments div#comment-form p {
+  margin: 0;	
+}
+
+button.prev {
+    background: url("/images/prev-arrow.png") no-repeat scroll center top transparent;
+    border: medium none;
+    cursor: pointer;
+    float: left;
+    height: 45px;
+    left: 10px;
+    position: relative;
+    top: -270px;
+    width: 46px;
+    z-index: 4;
+}
+
+button.prev:hover {	
+  background: url('/images/prev-arrow.png') no-repeat scroll bottom transparent;
+}
+
+button.next {
+    background: url("/images/next-arrow.png") no-repeat scroll center top transparent;
+    border: medium none;
+    cursor: pointer;
+    float: right;
+    height: 45px;
+    left: -40px;
+    position: relative;
+    top: -270px;
+    width: 46px;
+    z-index: 4;
+}
+
+button.next:hover {
+  	background: url("/images/next-arrow.png") no-repeat scroll bottom transparent;
+}
+
+div#basket {
+    background-color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    float: left;
+    font-size: 0.9em;
+    padding: 30px;
+    margin-top: 20px;
+    border: 1px solid #e1e1e1;
+    width: 900px;
+    position: relative;
+}	
+
+div.learn-box {
+  float: left;
+  border-bottom: 3px dotted #e1e1e1;	
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+div#steps {
+    background: url("/images/stepsback.png") no-repeat scroll -110px -2px transparent;
+    border: 1px solid #E1E1E1;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    height: 37px;
+    width: 960px;
+    margin-bottom: 20px;
+}
+
+div#steps div {
+  padding: 10px 0px;
+  width: 230px;	
+  float: left;
+  text-align: center;
+}
+
+div#steps div.selected {
+  float: left;
+  border: none;
+  padding: 11px 0;
+  border-left: 1px solid #124B13;
+  height: 15px;
+}
+
+div#steps div.completed {
+  border-right: 1px solid #307835;	
+}
+
+div#steps div h1 {
+  font-size: 13px;
+  color: #666;
+  letter-spacing: 0;
+  font-weight: normal;
+  margin: 0;
+}
+
+div#steps div.completed h1 {
+  color: #9fc8a2;	
+}
+
+div#steps div.selected h1 {
+  color: #fff;	
+  font-weight: normal;
+}

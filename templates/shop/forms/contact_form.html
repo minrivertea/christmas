@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block extracss %}
+<style type="text/css">
+
+
+div.right-box label {
+  margin-bottom: 5px;	
+}
+
+div.row {
+  margin-top: 0px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  width: 600px;
+  padding: 20px;
+  border-top: 3px dotted #e1e1e1;	
+}
+
+div.row-box {
+  margin-left: 0;	
+}
+
+div#main-text-wide div#left div.row-box p {
+  margin: 0;
+  float: left;
+  	
+}
+
+div.row-box textarea {
+  float: left;	
+  width: 370px;
+}
+
+div#left input.submit-button {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left top transparent;
+    border: medium none;
+    height: 51px;
+    margin-top: 0px;
+    width: 227px;
+    float:right;
+    margin-right: 20px;
+}
+
+div#left input.submit-button:hover {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left center transparent;
+}
+
+div#left input.submit-button:active {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left bottom transparent;
+}
+
+div#left p.help-text {
+    float: right;
+    font-size: 0.7em;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+</style>
+{% endblock %}
+
+{% block metadescription %}Contact the Min River Tea Farm - how you can get in touch with us.{% endblock %}
+
+{% block pagetitle%}Contact us{% endblock %}
+
+
+
+{% block content %}
+  
+<div id="banner">
+  <div class="super">
+  	<h1>Contact the Min River Tea Farm</h1>
+  </div>
+</div>  
+
+<div id="main-text-wide">
+  <div class="super">		
+	<div id="right">
+		{% include 'flatpages/about_navigation.html' %}
+
+	 	<p>If you just want to keep in touch, we tweet a lot, and also post tea related photos on flickr regularly.</p>
+			<a title="Checkout our tea photos on flickr" target="_blank" href="http://www.flickr.com/photos/62180582@N04/">
+			<img src="{% staticfile '/images/flickr.png' %}">
+			</a>
+			<a title="Tweet about this blog to your friends" target="_blank" href="http://twitter.com/home?status=http%3A%2F%2Fwww.minrivertea.com%2Fblog%2F">
+			<img src="{% staticfile '/images/twitter-small.png' %}">
+			</a>
+
+		</div>
+		
+	<div id="left">
+		<img src="{% staticfile '/images/blog-chris.jpg' %}" style="float:left;margin-right: 20px;">
+		<p>Hi, I'm Chris, the owner of the Min River Tea Farm. If you'd like to get in touch, for whatever reason, please feel free to contact me. The Min River Tea Farm is a UK company, but we're permanently based in China close to many tea growing areas in Fujian Province. The best ways to get in contact are:</p>
+			
+		<ul>
+			<li><strong>Email me:</strong> <a href="mailto:chris@minrivertea.com">chris@minrivertea.com</a> </li>
+			<li><strong>Follow me:</strong> <a href="http://twitter.com/minrivertea">@minrivertea</a></li>
+		</ul>
+	 	<h3>Returns</h3>
+	 	<p>If you're unhappy with any aspect of your tea, we'll be happy to offer a full refund, no questions asked.</p>
+	 	
+	 	<h3>Wholesale/trade</h3>
+	 	<p>If you're looking for wholesale orders or information, please just get in touch - we're based in China, near many of the best tea growing regions. Regardless of your price-range or requirements, I'll be happy to help out.</p>
+		{% if message %}
+			<h3>Thanks!</h3>
+			<p>Your message has been sent to the Min River Tea Farm. We'll be in touch as soon as possible (normally within 12 hours).</p>
+		{% else %}
+			<h3>Send us a message</h3>
+			<p>Use our online contact form to send us a message. We respond to all messages within 12 hours.</p>
+			<div class="row">
+				<div class="row-box">
+				<form action="." method="post">
+				<p>	 
+					<input type="text" name="your_name" id="id_your_name" />
+					<label for="id_your_name">Your name</label>
+				</p>
+				<p> 
+					<input type="text" name="your_email" id="id_your_email" />
+					<label for="id_your_email">Your email</label>
+				</p>
+				<p>
+					<textarea id="id_your_message" rows="10" cols="40" name="your_message"></textarea>
+					<label for="id_your_message">Your message</label> 
+				</p>
+
+				</div>
+			</div>
+				
+			<input class="submit-button" value="" type="submit">
+<p class="help-text">
+			<img src="{% staticfile '/images/lock.gif' %}"> We will never share, sell or spam your email address (<a target="_blank" title="Read our privacy policy (opens in a new window)" href="/privacy/">Privacy</a>)
+			</p>	
+					
+			</form>
+		{% endif %}
+	</div>
+  </div>
+</div>
+
+
+
+		
+
+    {% endblock %}

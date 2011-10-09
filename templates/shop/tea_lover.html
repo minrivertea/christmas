@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block metadescription %}{{ tea.name }} - {{ tea.description }}{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{% staticfile '/js/prototype.js' %}"></script>
+<script type="text/javascript" src="/js/scriptaculous.js?load=effects,builder"></script>
+<script type="text/javascript" src="{% staticfile '/js/lightbox.js' %}"></script>
+{% endblock %}
+
+{% block extracss %}
+
+<link rel="stylesheet" href="{% slimfile '/css/lightbox.css' %}" type="text/css" media="screen" />
+
+<style type="text/css">
+  img.leaves {
+    float: left;
+    margin-right: 30px;	
+  }
+</style>
+{% endblock %}
+
+
+{% block pagetitle %}minrivertea.com: {{ tea_lover.first_name }} {{ tea_lover.last_name }} - Tea Lover{% endblock %}
+
+{% block banner %}
+	    	<div id="home-banner">
+	    	<h2 class="logo-assist">{{ tea_lover.first_name }} {{ tea_lover.last_name }}</h2>
+	    	<p class="normal">...is a bona fide tea lover!</p>
+			</div>
+{% endblock %}
+
+{% block content %}
+
+<div id="featured-small"></div>
+
+<div id="main-text-wide">
+	
+	<img class="leaves" src="{% staticfile '/images/leaves-large.png' %}">
+	<h2>Genuine Chinese Tea Lover</h2>
+	<p>This certifies that {{ tea_lover.first_name }} {{ tea_lover.last_name }} is a bona fide tea lover.</p>
+			
+						 
+
+
+</div>
+{% endblock %}

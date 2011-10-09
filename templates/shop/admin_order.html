@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block extracss %}
+  <style type="text/css">
+      table {font-size: 14px;}
+      td { padding:5px 10px 5px 5px;}
+      td ul {padding:0; margin:0;}
+      td ul li {list-style-type:none;}
+      thead {font-weight: bold;}
+      h3 {margin: 30px 0 20px 0;}
+      h2 {margin-top: 10px;}
+  </style>
+{% endblock %}
+
+{% block pagetitle %}Order : {{ order }}{% endblock %}
+
+{% block content %}
+<div id="banner">
+  <div class="super">
+    <h1>{{ order }}</h1>
+    <p><a href="{% url admin_stuff %}">&laquo; back to admin stuff</a></p>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">
+
+<h3>Owner</h3>
+<p>{{ order.owner.first_name }} {{ order.owner.last_name }} - ({{ order.owner }})</p>
+<h3>Address to send to</h3>
+<p>{{ order.address.house_name_number }}, {{ order.address.address_line_1 }}, {{ order.address.address_line_2 }}, {{ order.address.town_city }}, {{ order.address.postcode }},
+<h3>Items</h3>
+{% for item in order.items.all %}
+	{{ item }}<br/>
+{% endfor %}
+
+
+  </div>
+</div>
+{% endblock %}

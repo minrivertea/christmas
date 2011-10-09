@@ -1,0 +1,416 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load django_static %}
+
+{% block metadescription %}{% if tea.meta_description %}{{ tea.meta_description|safe }}{% else %}{{ tea.name }} - {{ tea.description|safe }}{% endif %}{% endblock %}
+{% block pagetitle %}{{ tea.meta_title }}{% endblock %}
+
+{% block extrajs %}
+<script>
+$(function() {
+
+$(".scrollable").scrollable();
+
+$(".items img").hover(function() {
+
+	// see if same thumb is being clicked
+	if ($(this).hasClass("active")) { return; }
+
+	// calclulate large image's URL based on the thumbnail URL (flickr specific)
+	var url = $(this).attr("alt");
+	
+	// get handle to element that wraps the image and make it semi-transparent
+	var wrap = $("#image_wrap").fadeTo("medium", 0.5);
+
+	// the large image from www.flickr.com
+	var img = new Image();
+    
+	// call this function after it's loaded
+	img.onload = function() {
+
+		// make wrapper fully visible
+		wrap.fadeTo("fast", 1);
+
+		// change the image
+		wrap.find("img").attr("src", url);	
+
+	};
+
+	img.src = url;
+
+	// activate item
+	$(".items img").removeClass("active");
+	$(this).addClass("active");
+
+}).filter(":first").hover();
+});
+
+// this controls the notify form email behaviour
+$('#id_email').focus(function() {
+	if ($(this).val() == "Your email address") {
+		$(this).css('color', '#333');
+		$(this).val("");
+	}
+	else {
+	  return;	
+	}
+});
+
+$('#id_email').focusout(function() {
+	if ($(this).val() == "") {
+		$(this).val("Your email address");
+		$(this).css('color', '#999');
+	}
+});
+
+$(document).ready( function() {
+	$('a#explain-prices').fancybox({
+    	'autoDimensions':false,
+    	'width':600,
+    	'padding': 30,
+    });
+});
+
+
+</script>
+
+<script type="application/javascript" src="{% staticfile '/js/lightbox/jquery.fancybox-1.3.4.pack.js' %}"></script>
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% staticfile '/css/fancybox/jquery.fancybox-1.3.4.css' %}" />
+<style type="text/css">
+div.more-info {
+  padding-left: 0px;
+  margin-bottom: 15px;
+  padding-top: 15px;	
+  border-top: 1px solid #e1e1e1;
+  margin-top: 15px;
+}
+
+#home-banner p.normal {
+    font-size: 15px;
+    width: 500px;
+}
+
+h3.more-info {
+    margin-bottom:10px;
+    margin-top: -3px;
+    padding-bottom: 0;
+}
+
+div.right-links h3.more-info {
+  margin-bottom: 15px;	
+  float: left;
+  width: 220px;
+}
+
+
+div.other-teas {
+    float: left;
+    margin: 0 0 10px 10px;
+    width: 500px;
+}
+
+div.other-tea {
+    border-bottom: 1px solid white;
+    color: #666666;
+    float: left;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    width: 460px;
+}
+
+div.other-tea.last {
+  border-bottom: none;	
+}
+
+div.other-tea div.image {
+  float: left;
+  margin-right: 15px;
+}
+
+div.other-tea div.text {
+  margin-top: 2px;	
+}
+
+div.other-teas h3 {
+  font-size: 1.5em;
+  text-shadow: 1px 1px #fff;
+  margin-bottom: 20px;
+}
+
+div.product-photos-small {
+    float: left;
+    margin: 0 0 35px 0;
+    width: 420px;
+    text-align: right;
+    display: none;
+}
+
+div.product-photos-small img {
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 2px;
+    border: 1px solid #fff;
+}
+
+div.product-photos-small img:hover {
+  cursor: pointer;
+  opacity: 0.8;	
+}
+
+div.product-photos-small img.active {
+  padding: 2px;
+  border: 1px solid #4e9350;	
+}
+
+div.product-photos-small p {
+    float: left;
+    font-size: 13px;
+    line-height: 1.3em;
+    margin-top: 20px;
+    text-align: right;
+    width: 100px;
+}
+
+div.right-links {
+  padding-top: 0px;	
+  float: left;
+}
+
+div.right-links ul {
+    margin: 0 0 0 0;
+    padding-left: 15px;
+}
+
+div.right-links ul li {
+    color: #666666;
+    font-size: 13px;
+    list-style-type: square;
+    margin-bottom: 10px;
+    padding-left: 0;
+}
+
+div.tea-top {
+    float: left;
+    margin: 10px 0 10px;
+    padding-bottom: 30px;
+}
+
+div.tea-top div.description p {
+  font-size: 14px;
+  color: #333;	
+  margin: 0 0 10px 0;
+}
+
+div.tea-top div.main-image {
+  width: 520px;
+  float: left;
+  margin-right: 20px;	
+}
+
+
+div.tea-top div.main-image img {
+  border-radius: 10px;	
+  border: 10px solid #fff;
+}
+
+div.tea-top div.tea-description {
+  float: left;
+  width: 330px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+div.tea-top div.tea-description p {
+  font-size: 13px;	
+  margin-top: 0;
+}
+
+#prices {
+  margin-top: 30px;	
+}
+
+#prices span.description {
+    color: #000000;
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2em;
+    width: 100px;
+}
+
+#prices a.button {
+  color: #fff;
+  float: left;
+  margin-left: 20px;
+  width: 170px;	
+  font-size: 16px;
+  padding: 13px 15px;
+  
+}
+
+#prices .number {
+  font-weight: bold;
+  font-size: 60px;
+  float: left;
+  color: #439249;
+  display: block;
+  margin-right: 10px;
+  text-shadow: 0 2px 2px #fff;
+  position: relative;
+  top: -3px;	
+}
+
+.info ul {
+  list-style-type: none;
+  margin: 20px 0 0 ;
+  padding: 0;	
+  line-height: 1.2em;
+}
+
+.info ul li {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;	
+}
+
+.info ul img {
+  float: left;
+  margin-right: 10px;
+  border: 5px solid #fff;
+  box-shadow: 0 1px 3px #999;
+  border-radius: 5px;	
+}
+
+.info ul li a.title {
+  font-weight: bold;
+  margin: 0;	
+}
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div id="banner">
+  <div class="super">
+   
+	
+  	<h1>{{ tea.name }}</h1>
+
+
+  </div>
+</div>
+
+
+<div id="main-text-wide">
+  <div class="super">
+     	
+	<div class="tea-top">
+		<div class="main-image">
+			<div id="image_wrap">	
+				<img src="http://static.flowplayer.org/tools/img/blank.gif" width="500" height="331" /> 
+			</div>
+		</div>
+		
+		<div class="description"><p>{{ tea.body_text }}</p></div>
+
+
+		<div class="product-photos-small">
+			<div class="scrollable">   
+			   <div class="items">
+  			    <div>
+  			        {% thumbnail tea.image "50x50" crop="center" as im %}
+  			    		{% thumbnail tea.image "500x331" crop="center" as im_large %}
+						<img class="product-small" alt="{{ im_large.url }}" title="{{ tea.description }}" src="{{ im.url }}"/></a>
+						{% endthumbnail %}
+					{% endthumbnail %}
+					
+					{% if tea.image_2 %}
+  			    	{% thumbnail tea.image_2 "50x50" crop="center" as im %}
+  			    		{% thumbnail tea.image_2 "500x331" crop="center" as im_large %}
+						<img class="product-small" alt="{{ im_large.url }}" title="{{ tea.image_2_caption }}" src="{{ im.url }}"/></a>
+						{% endthumbnail %}
+					{% endthumbnail %}
+					{% endif %}
+					
+					{% if tea.image_3 %}
+					{% thumbnail tea.image_3 "50x50" crop="center" as im %}
+  			    		{% thumbnail tea.image_3 "500x331" crop="center" as im_large %}
+						<img class="product-small" alt="{{ im_large.url }}" title="{{ tea.image_3_caption }}" src="{{ im.url }}"/></a>
+						{% endthumbnail %}
+					{% endthumbnail %}
+					{% endif %}
+					
+					{% if tea.image_4 %}
+					{% thumbnail tea.image_4 "50x50" crop="center" as im %}
+  			    		{% thumbnail tea.image_4 "500x331" crop="center" as im_large %}
+						<img class="product-small" alt="{{ im_large.url }}" title="{{ tea.image_4_caption }}" src="{{ im.url }}"/></a>
+						{% endthumbnail %}
+					{% endthumbnail %}
+					{% endif %}
+					
+					{% if tea.image_5 %}
+					{% thumbnail tea.image_5 "50x50" crop="center" as im %}
+  			    		{% thumbnail tea.image_5 "500x331" crop="center" as im_large %}
+						<img class="product-small" alt="{{ im_large.url }}" title="{{ tea.image_5_caption }}" src="{{ im.url }}"/></a>
+						{% endthumbnail %}
+					{% endthumbnail %}
+					{% endif %}
+      			</div>
+      		  </div>
+      		</div>
+		</div><!-- end product photos small -->
+
+		      		<div id="prices">
+				{% for price in prices %}
+		    	  <div class="price">
+		    		<span class="number">{{ price.price_unit }}{{ price.price|floatformat }}</span> 
+		    		<span class="description">{{ price.description }}</span>
+					<a title="Add 1 {{ tea.name }} to your basket" href="{% url add_to_basket price.id %}" class="button">
+						Add to basket +
+					</a>
+              	</div>
+           		{% endfor %}
+        	</div>
+
+
+	</div><!-- end top product info div -->
+
+	
+	<div id="right">   
+
+    	
+      </div>
+      
+      <div id="left">
+		
+		<div class="info">
+			<h3 class="small">Still not sure? Take a look at our other cards</h3>
+			<ul>
+			{% for other in others %}
+				<li>
+					{% thumbnail other.image "100" crop="center" as im%}
+						<img alt="{{ other.description }}" class="mail-icon" src="{{ im.url }}" />
+					{% endthumbnail %}
+					<a class="title" href="{% url product_view other.slug %}">{{ other.name }}</a>
+					<br/>{{ other.super_short_description }}
+				</li>
+			{% endfor %}
+			</ul>
+		</div> 
+      
+      
+      </div>
+           	
+
+</div>
+</div>
+{% endblock %}

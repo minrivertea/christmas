@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load comments %}
+
+
+{% block content %}
+<div id="featured-small"></div>
+
+  <div id="main-text-wide">
+  	<div id="left">
+		<h2>Your comment has been posted</h2>
+		<p class="subtitle">Thanks for giving us your views.</p>
+		<p><a href="{{ comment.get_content_object_url }}">Return to the original post &raquo;</a></p>
+	</div>
+{% endblock %}

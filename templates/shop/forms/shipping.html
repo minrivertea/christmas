@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block extracss %}
+<style type="text/css">
+
+
+div.right-box label {
+  margin-bottom: 5px;	
+}
+
+div.row {
+  margin-top: 0px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  width: 490px;
+  padding: 20px;
+  border-top: 3px dotted #e1e1e1;	
+}
+
+div.row-box {
+  margin-left: 0;	
+}
+
+div#main-text-wide div#left div.row-box p {
+  margin: 0;
+  float: left;
+  	
+}
+
+div.row-box textarea {
+  float: left;	
+}
+
+div#left input.submit-button {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left top transparent;
+    border: medium none;
+    height: 51px;
+    margin-top: 0px;
+    width: 227px;
+    margin-right: 30px;
+}
+
+div#left input.submit-button:hover {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left center transparent;
+}
+
+div#left input.submit-button:active {
+    background: url("{% staticfile '/images/submit.png' %}") no-repeat scroll left bottom transparent;
+}
+
+div#left p.help-text {
+    float: right;
+    font-size: 0.7em;
+    padding-right: 35px;
+    margin-top: 20px;
+}
+
+</style>
+{% endblock %}
+
+{% block metadescription %}We deliver our fine Chinese teas to the UK and Europe.{% endblock %}
+
+{% block pagetitle%}Shipping and delivery{% endblock %}
+
+
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+  <h1>Shipping and delivery information</h1>
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">		
+		<div id="right">
+			{% include 'flatpages/about_navigation.html' %}
+
+		 	<p>If you just want to keep in touch, we tweet a lot, and also post tea related photos on flickr regularly.</p>
+		 	<a title="Checkout our tea photos on flickr" target="_blank" href="http://www.flickr.com/photos/62180582@N04/"><img src="{% staticfile '/images/flickr.png' %}"></a>
+			<a title="Tweet about this blog to your friends" target="_blank" href="http://twitter.com/home?status=http%3A%2F%2Fwww.minrivertea.com%2Fblog%2F"><img src="{% staticfile '/images/twitter-small.png' %}"></a>
+
+		</div>
+		
+		<div id="left">
+
+			<p>We currently can only ship orders <strong>to Europe and the UK.</strong> This includes: <em>United Kingdom, BFPO, Channel Islands, Northern Ireland and the Outer Hebrides</em></p>
+			
+			<h3>North America and other countries</h3>
+			<p>We are currently in the process of expanding our shipping service to include full worldwide delivery.</p>
+			<p>If you would like us to <strong>notify you</strong> when shipping becomes available in your country, just drop your email address below. We'll send you a single notification email as soon as it's possible to order in your country.</p>
+			
+
+			{% if message %}
+			  <div class="message">
+				<h3>Thanks!</h3>
+				<p>We've received your request, and once shipping becomes available worldwide, we'll drop you an email to remind you. Many thanks - The Min River Tea Farm.</p>
+			  </div>
+			{% else %}
+
+				<div class="row">
+					<div class="row-box">
+					<form action="." method="post">
+					{{ form.as_p }}
+					</div>
+					</div>
+
+					<p class="help-text">
+					<img src="{% staticfile '/images/lock.gif' %}"> We will never share, sell or spam your email address (<a target="_blank" title="Read our privacy policy (opens in a new window)" href="/privacy/">Privacy</a>)
+					</p>					
+					<input class="submit-button" value="" type="submit">
+
+					
+				</form>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+
+		
+
+    {% endblock %}

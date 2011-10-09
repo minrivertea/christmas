@@ -1,0 +1,10 @@
+Hi {{ first_name }},
+
+The photo you submitted to the Min River Tea Farm has been published - you're a bona fide tea lover now!
+
+Check it out at:
+
+{{ url }}
+
+Chris West
+Founder, Min River Tea Farm

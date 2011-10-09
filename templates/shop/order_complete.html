@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Order Complete{% endblock %}
+
+
+{% block extracss %}
+<style type="text/css">
+p {margin-top: 0; margin-bottom: 5px;}
+div.row { width: 500px; margin-right: 30px;}
+div.row-box input {width: 300px; float: left;}
+div.row-box p.intro {margin: -10px 0 20px;}
+div.row-box input.twitter-submit {float: left;border: none;width:124px; height:41px;margin: 0px 0px 20px 10px;background:url('/images/twitter-submit.png') no-repeat top left}
+div.row-box input.twitter-submit:hover {background: url('/images/twitter-submit.png') no-repeat bottom left; cursor: pointer;}
+div.row-box img {float: left; margin-right: 10px; margin-top: -10px;}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="banner">
+  <div class="super">
+    {% ifequal order None %}
+    <h1>Ooops!</h1>
+    {% else %}
+    <h1>Order complete!</h1>
+    <p class="subtitle">We've received your order and we'll send your tea immediately. We've also sent you an email confirming the details. Thank you and we really hope you enjoy your tea!</p>
+
+    {% endifequal %}
+  </div>
+</div>
+
+<div id="main-text-wide">
+  <div class="super">
+
+{% ifequal order None %}
+
+<p class="subtitle">You've come through to the 'Completed Order' page, but we don't think you've made an order yet. Try returning to the homepage, and if you think there's been a problem, just get in touch - <a href="mailto:mail@minrivertea.com">mail@minrivertea.com</a>.</p>
+
+<p><em>ps. if you have cookies turned off on your browser, this could be the reason why.</em></p>
+
+{% else %}
+
+
+<div id="left">
+<h3>Your order ID is: {{ order }}</h3>
+<p>Please note, we must confirm payment is received before we can ship any orders. If there is a problem with your order, we will contact you immediately to resolve this. Many thanks for your patience.</p>
+
+
+<p>If for any reason you need to contact us about your order, email us at <a href="mailto:chris@minrivertea.com">chris@minrivertea.com</a> quoting your order ID. We normally respond to emails within 2-3 hours at the latest.</p>
+
+
+
+{% endifequal %}
+
+
+
+  </div>
+</div>
+{% endblock %}

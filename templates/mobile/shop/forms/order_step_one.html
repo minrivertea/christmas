@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load django_static %}
+
+{% block pagetitle %}Order (Step 1 of 3) - Your details{% endblock %}
+
+{% block extracss %}
+<style type="text/css">
+form {
+  width: 88%;
+  padding: 0 5% 0 7%;
+  float: left;	
+}
+
+label {
+  font-size: 12px;
+  font-weight: normal;	
+}
+
+p.ex {
+  line-height: 1.6em;	
+}
+
+.green {
+  color: #439249;
+  font-weight: bold;	
+}
+
+input.checkout-button {
+  background: none;
+  background-color: #439249;
+  padding: 10px 15px;
+  -webkit-border-radius: 5px;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  margin: 0 15px 15px 0;
+  text-align: right;
+  display:block;
+  border: none;	
+  font-size: 16px;
+}
+
+p.red, ul.errorlist {
+  color: red;
+}
+
+ul.errorlist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;	
+}
+
+</style>
+
+{% endblock %}
+
+{% block banner %}
+<h1>Step 2/4 - Your details</h1>
+{% endblock %}
+
+{% block content %}
+	
+    <form method="post" action="">
+		 
+	
+   	{% if form.first_name.errors or form.last_name.errors or form.email.errors %}
+   	<ul class="errorlist"><li>* you must provide all your details - thanks!</li></ul>
+   	{% endif %}
+
+   	<p class="ex">Please provide your name and email address (<span class="green">green</span> fields are mandatory)</p>
+
+    <p>
+    	<input  class="{% if form.first_name.errors %}red{% endif %}" type="text" name="first_name" id="id_first_name" value="{{ first_name }}"/>
+    	<label class="green" for="id_first_name">* First name</label>
+    </p>
+    <p>
+    	<input class="{% if form.last_name.errors %}red{% endif %}" type="text" name="last_name" id="id_last_name" value="{{ last_name }}"/>
+    	<label class="green" for="id_last_name">* Surname</label>
+    </p>
+    <p>
+    	<input class="{% if form.email.errors %}red{% endif %}" type="email" name="email" id="id_email" value="{{ email }}"/>
+    	<label class="green" for="id_email">* Email address</label></p>	
+    	</div>
+    </div>
+    
+	
+    {{ form.non_field_errors }}
+    <p class="ex">Please provide the address to send your tea:</p>
+    		
+
+      <p>
+      	<input id="id_house_name_number" type="text" name="house_name_number" maxlength="200" value="{{ house_name_number }}"/>
+      	<label class="green" for="id_house_name_number">* House name number:</label>
+      </p>
+	  	{{ form.address_line_1.error }}
+	  
+	  <p>
+	  	<input id="id_address_line_1" type="text" name="address_line_1" maxlength="200" value="{{ address_line_1 }}"/> 
+	 	<label for="id_address_line_1">Address line 1:</label>
+	  </p>
+      	{{ form.address_line_2.errors }}
+      	
+      <p>
+      	
+      	<input id="id_address_line_2" type="text" name="address_line_2" maxlength="200"  value="{{ address_line_2 }}"/>
+      	<label for="id_address_line_2">Address line 2:</label>
+      	</p>
+      	{{ form.town_city.errors }}
+      
+      <p>
+      	
+      	<input id="id_town_city" type="text" name="town_city" maxlength="200" value="{{ town_city }}"/> 
+      	<label for="id_town_city">Town / City:</label>
+      	</p>
+      	{{ form.postcode.errors }}
+      	
+      <p>
+      	
+      	<input id="id_postcode" type="text" name="postcode" maxlength="200" value="{{ postcode }}" /> 
+      	<label class="green" for="id_postcode">* Postcode:</label>
+      	</p>
+      	
+	  <p>
+	    <span class="country">
+	    {{ confirm_form.country }}
+	    </span>
+	    <label class="green" for="id_country">* Country:</label>
+	  </p>
+ 	  <br clear="all">
+ 	  
+ 	</div> 
+	</div>
+
+	<input type="submit" class="checkout-button" value="Confirm your details &raquo;"/>
+
+
+	</form>
+
+
+	</div>
+
+  </div>
+</div>
+
+{% endblock %}

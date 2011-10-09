@@ -1,0 +1,163 @@
+{% load django_static %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="en-gb" http-equiv="Content-Language" />
+	<meta content="Min River Tea Farm - 500 Error Page" name="description" />
+	<meta content="" name="keywords"/>
+	
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="generator" content="Django - http://www.djangoproject.com" />
+	<meta name="DC.format" content="text/html" />
+	<meta name="DC.type" content="Django Site" />
+	<meta name="robots" content="ALL" />
+	<title>Site unavailable - The Min River Tea Farm</title>
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+	
+	<script type="text/javascript" src="{% staticfile '/js/jquery-1.6.min.js' %}"></script>
+	<style type="text/css">
+	 	body {font-family: Georgia, serif; }
+	 	div#header { width: 800px; margin: 0 auto; height: 100px;}
+	 	
+	 	div#logo { width: 320px; float: left; margin: 20px 0 0 0px;}
+		div#logo h1 {background: url("{% staticfile '/images/logo7.jpg' %}") no-repeat scroll 0 0 transparent; height: 88px; margin: 0px 0 0 0px;
+}
+
+		div#logo h1 span {
+  			display: none;	
+		}
+	
+	    
+	    div#main-text-wide {width: 800px; margin: 0 auto; margin-top: 0px;}
+		
+		#soup-main {display: block; position: relative; overflow: hidden; width:800px; height: 420px; margin-top: 30px;}
+		img#soup-back {position: absolute; z-index: 1; left: 0px; width: 800px; height: 420px;}
+		img#soup-front {position: absolute; z-index: 14; width: 800px; height: 420px; left: 0px; top: 0px;}
+		img#soup-fields {position: absolute; z-index:10; width: 850px; height: 420px; top: 50px; left: -20px;}
+		img#soup-text {position: absolute; z-index:18; width: 800px; height: 420px; top: 0px; left: 0px;}
+		
+		div.text {padding: 20px; margin-top: 1px; }
+
+		p { text-align: center; font-size: 17px; line-height: 1.8em; margin: 0 0 20px 0; padding-bottom: 20px; border-bottom: 5px dotted #9ee2b0;}
+		p.small {font-size: 12px; border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
+		a img {text-decoration: none; border: none;}
+		
+	</style>
+
+</head>
+<script type="application/javascript">
+  (function($){
+    $(document).ready(function(){
+      var docWidth    = $(window).width()
+      var docHeight   = $(window).height()
+
+      // add parallaxable elements
+      var pList  = [
+                             { 'obj'    : $('#soup-front'),
+                               'xStart' : 0,
+                               'yStart' : 0,
+                               'xRange' : 10,
+                               'yRange' : 10,
+                               'invert' : false
+                             },
+                             { 'obj'    : $('#soup-back'),
+                               'xStart' : 0,
+                               'yStart' : 0,
+                               'xRange' : 0,
+                               'yRange' : 0,
+                               'invert' : false
+                             },
+                             { 'obj'    : $('#soup-fields'),
+                               'xStart' : 0,
+                               'yStart' : 0,
+                               'xRange' : 0,
+                               'yRange' : 30,
+                               'invert' : false
+                             },
+                             { 'obj'    : $('#soup-text'),
+                               'xStart' : 0,
+                               'yStart' : 0,
+                               'xRange' : 7,
+                               'yRange' : 0,
+                               'invert' : false
+                             }
+                           ]
+
+      // set the initial locations, used for mathmatical reference
+      $.each(pList, function(index,value) {
+        var position = value.obj.position()
+        value.xStart = position.left
+        value.yStart = position.top
+      })
+
+      $(document).mousemove(function(e){
+        var x      = e.pageX
+        var y      = e.pageY
+        var hRatio = Math.round((x/docWidth)*100)/100
+        var vRatio = Math.round((y/docWidth)*100)/100
+        $.each(pList, function(index,value) {
+          if(value.invert != true){
+            value.obj.css('left',value.xStart + (value.xRange*hRatio))
+            value.obj.css('top',value.yStart + (value.yRange*vRatio))
+          } else {
+            value.obj.css('left',value.xStart - (value.xRange*hRatio))
+            value.obj.css('top',value.yStart - (value.yRange*vRatio))
+          }
+        })
+      })
+      $(window).resize(function(e){
+        docWidth  = $(window).width()
+        docHeight = $(window).height()
+      })
+    })
+  })(jQuery)
+</script>
+
+
+<body>
+
+    
+    <div id="container">    
+    
+	    <div id="header">
+			<div id="logo">
+				<h1><span></span></h1>
+			</div>
+
+        </div>
+        
+        <div id="featured-small"></div>
+        <div id="main-text-wide">
+
+        <a href="http://www.minrivertea.com">
+        	
+          <div id="soup-main">
+        	<img id="soup-back" src="{% staticfile '/images/soup-back.png' %}">
+        	<img id="soup-fields" src="{% staticfile '/images/soup-fields.png' %}">
+        	<img id="soup-front" src="{% staticfile '/images/soup-front.png' %}">
+        	<img id="soup-text" src="{% staticfile '/images/soup-text.png' %}">
+          </div>
+        </a>
+        
+        <div class="text">
+        <p class="small"><em>If you're wondering what this is about, check out the Soup Nazi on Youtube while we get the site back up and running - <a href="http://www.youtube.com/watch?v=M2lfZg-apSA">http://www.youtube.com/watch?v=M2lfZg-apSA</a></em></p>
+        </div>
+        
+        </div>
+
+
+	<br clear="all"/>
+    
+    
+    </div>
+
+</body>
+
+</html>
