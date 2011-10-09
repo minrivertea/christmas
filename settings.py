@@ -97,7 +97,6 @@ INSTALLED_APPS = (
     'paypal.standard.ipn',
     'django_static',
     'registration',
-    'django_mobile',
 )
 
 # Random app information for different things
