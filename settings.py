@@ -9,7 +9,7 @@ THUMBNAIL_DEBUG = False
 
 
 ADMINS = (
-    ('Chris West', 'chris@christmastea.com'),
+    ('Chris West', 'mail@chinachristmascards.com'),
 )
 
 MANAGERS = ADMINS
