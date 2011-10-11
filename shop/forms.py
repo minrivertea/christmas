@@ -119,7 +119,8 @@ class OrderStepOneForm(forms.Form):
     house_name_number = forms.CharField(max_length=200, required=False)
     address_line_1 = forms.CharField(max_length=200, required=False)
     address_line_2 = forms.CharField(max_length=200, required=False)
-    town_city = forms.CharField(max_length=200, required=False)
+    town_city = forms.CharField(max_length=200, required=True, error_messages={'required': '* Please give a city/town'})
+    province = forms.CharField(max_length=100, required=True, error_messages={'required': '* Please give a province'})
     postcode = forms.CharField(max_length=200, required=False)
     subscribed = forms.BooleanField(required=False)
     

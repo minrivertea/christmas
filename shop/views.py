@@ -322,7 +322,7 @@ def basket(request):
     if total_price > 50:
         postage_discount = True
     else:
-        total_price += 3
+        total_price += int(settings.POSTAGE_CHARGE)
         
     discount_form = UpdateDiscountForm()
         
@@ -405,6 +405,7 @@ def order_step_one(request):
                 address_line_1 = form.cleaned_data['address_line_1'],
                 address_line_2 = form.cleaned_data['address_line_2'],
                 town_city = form.cleaned_data['town_city'],
+                province = form.cleaned_data['province'],
                 postcode = form.cleaned_data['postcode'],
                 country = "CHINA",
             )
@@ -449,6 +450,7 @@ def order_step_one(request):
              address_line_1 = request.POST['address_line_1']
              address_line_2 = request.POST['address_line_2']
              town_city = request.POST['town_city']
+             province = request.POST['province']
              postcode = request.POST['postcode']
              first_name = request.POST['first_name']
              last_name = request.POST['last_name']
@@ -494,7 +496,7 @@ def order_confirm(request):
     if total_price > 50:
         postage_discount = True
     else: 
-        total_price += 3
+        total_price += int(settings.POSTAGE_CHARGE)
         
     if request.method == 'POST': 
         form = OrderCheckDetailsForm(request.POST)

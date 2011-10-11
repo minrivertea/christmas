@@ -245,6 +245,7 @@ class Address(models.Model):
     address_line_1 = models.CharField(max_length=200, blank=True, null=True)
     address_line_2 = models.CharField(max_length=200, blank=True, null=True)
     town_city = models.CharField(max_length=200)
+    province = models.CharField(max_length=100)
     postcode = models.CharField(max_length=200)
     country = models.CharField(max_length=200, choices=COUNTRY_CHOICES, db_index=True)
     

@@ -64,7 +64,7 @@ input.button {
 		<input type="hidden" name="address1" value="{{ order.address.house_name_number }}, {{ order.address.address_line_1 }}">		
 		<input type="hidden" name="address2" value="{{ order.address.address_line_2 }}">
 		<input type="hidden" name="city" value="{{ order.address.town_city }}">
-		<input type="hidden" name="country" value="GB">
+		<input type="hidden" name="country" value="CN">
 		<input type="hidden" name="zip" value="{{ order.address.postcode }}">
 		<input TYPE="hidden" NAME="return" value="{{ paypal_return_url }}">
 		<input TYPE="hidden" NAME="cancel" value="{{ paypal_notify_url }}">
@@ -78,18 +78,18 @@ input.button {
 		{% else %}
 		<input type="hidden" name="item_name_1" value="Postage Standard Rate"> 
 		<input type="hidden" name="quantity_1" value="1">
-		<input type="hidden" name="amount_1" value="3.00">
+		<input type="hidden" name="amount_1" value="2.00">
 		{% endif %}
 		 
 		 {% if postage_discount %}
 	 		 {% for thing in basket_items %}
-				<input type="hidden" name="item_name_{{ forloop.counter }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }} -  ({{ thing.item.weight|floatformat }}{{ thing.item.weight_unit }})"> 
+				<input type="hidden" name="item_name_{{ forloop.counter }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }}"> 
 				<input type="hidden" name="quantity_{{ forloop.counter }}" value="{{ thing.quantity }}">
 				<input type="hidden" name="amount_{{ forloop.counter }}" value="{{ thing.item.price }}"> 
 			 {% endfor %}
 		{% else %}
 			 {% for thing in basket_items %}
-				<input type="hidden" name="item_name_{{ forloop.counter|add:"1" }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }} -  ({{ thing.item.weight|floatformat }}{{ thing.item.weight_unit }})"> 
+				<input type="hidden" name="item_name_{{ forloop.counter|add:"1" }}" value="{{ thing.item.parent_product.name }} {{ thing.item.parent_product.category }}"> 
 				<input type="hidden" name="quantity_{{ forloop.counter|add:"1" }}" value="{{ thing.quantity }}">
 				<input type="hidden" name="amount_{{ forloop.counter|add:"1" }}" value="{{ thing.item.price }}"> 
 			 {% endfor %}
@@ -119,7 +119,7 @@ input.button {
 		  <tr>
 		  	<td>Postage</td>
 		  	<td>&nbsp;</td>
-		  	<td>£3.00</td>		  
+		  	<td>£2.00</td>		  
 		  </tr>
 		  {% endif %}
 		  <tr>
@@ -144,6 +144,7 @@ input.button {
 		{{ order.address.address_line_1 }}<br/>
 		{{ order.address.address_line_2 }}<br/>
 		{{ order.address.town_city }}<br/>
+		{{ order.address.province }}<br/>
 		{{ order.address.postcode }}<br/>
 		{{ order.address.country|upper }}
 		<br/>
