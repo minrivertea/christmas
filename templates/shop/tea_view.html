@@ -314,7 +314,7 @@ div.tea-top div.tea-description p {
 		      		<div id="prices">
 				{% for price in prices %}
 		    	  <div class="price">
-		    		<span class="number">{{ price.price_unit }}{{ price.price|floatformat }}</span> 
+		    		<span class="number">{{ currency }}{{ price.price|floatformat }}</span> 
 		    		<span class="description">{{ price.description }}</span>
 					<a title="Add 1 {{ tea.name }} to your basket" href="{% url add_to_basket price.id %}" class="button">
 						Add to basket +

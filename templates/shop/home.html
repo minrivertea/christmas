@@ -267,7 +267,7 @@ div#home-extra div.box h4 {
 				<h3><a href="{% url product_view product.parent_product.slug %}">{{ product.parent_product.name }} &raquo;</a></h3>
 				<p>{{ product.parent_product.description }}</p>
 				<div class="price">
-					<span class="number">{{ product.price_unit }}{{ product.price|floatformat }}</span>
+					<span class="number">{{ currency }}{{ product.price|floatformat }}</span>
 					<span class="description">{{ product.description }}</span>
 					<a class="button" href="{% url add_to_basket product.id %}">Add to basket</a>
 				</div>

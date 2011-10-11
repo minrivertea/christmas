@@ -347,6 +347,7 @@ def order_step_one(request):
             address_line_1 = order.address.address_line_1
             address_line_2 = order.address.address_line_2
             town_city = order.address.town_city
+            province = order.address.province
             postcode = order.address.postcode
             first_name = order.owner.first_name
             last_name = order.owner.last_name

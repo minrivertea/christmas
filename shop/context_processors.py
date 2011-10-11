@@ -12,6 +12,8 @@ def common(request):
     context['paypal_submit_url'] = settings.PAYPAL_SUBMIT_URL
     context['ga_is_on'] = settings.GA_IS_ON
     context['postage'] = settings.POSTAGE_CHARGE
+    context['currency'] = settings.CURRENCY
+    context['currency_code'] = settings.CURRENCY_CODE
     return context
 
 def get_teas(request):

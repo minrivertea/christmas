@@ -29,7 +29,7 @@
 			{% if product.coming_soon %}
     	  		<span class="coming-soon">Coming soon!</span>
     	  	{% else %}
-        		<span>from {{ product.get_lowest_price.price_unit }}{{ product.get_lowest_price.price|floatformat }}</span>
+        		<span>from {{ currency }}{{ product.get_lowest_price.price|floatformat }}</span>
           	{% endif %}
           	
 			

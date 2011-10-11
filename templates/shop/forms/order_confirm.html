@@ -58,7 +58,7 @@ input.button {
 		<input type="hidden" name="cmd" value="_cart"> 
 		<input type="hidden" name="upload" value="1"> 
 		<input type="hidden" name="business" value="{{ paypal_receiver_email }}">
-		<input type="hidden" name="currency_code" value="GBP">
+		<input type="hidden" name="currency_code" value="{{ currency_code }}">
 		<input type="hidden" name="address_override" value="1">
 		
 		<input type="hidden" name="address1" value="{{ order.address.house_name_number }}, {{ order.address.address_line_1 }}">		
@@ -78,7 +78,7 @@ input.button {
 		{% else %}
 		<input type="hidden" name="item_name_1" value="Postage Standard Rate"> 
 		<input type="hidden" name="quantity_1" value="1">
-		<input type="hidden" name="amount_1" value="2.00">
+		<input type="hidden" name="amount_1" value="{{ postage|floatformat:'2' }}">
 		{% endif %}
 		 
 		 {% if postage_discount %}
@@ -108,24 +108,24 @@ input.button {
 		    	</td>
 		    	<td width="150px">
 		    	</td>
-		    	<td>£{{ thing.get_price }}</td>		    				
+		    	<td>{{ currency }}{{ thing.get_price }}</td>		    				
 			  </tr>
 		  {% endfor %}
 		  {% if postage_discount %}
 		  <tr>
-		    <td><span class="small"><em>There is no postage charge, because your order is over £50</em></span></td>
+		    <td><span class="small"><em>There is no postage charge, because your order is over {{ currency }}50</em></span></td>
 		  </tr>
 		  {% else %}
 		  <tr>
 		  	<td>Postage</td>
 		  	<td>&nbsp;</td>
-		  	<td>£2.00</td>		  
+		  	<td>{{ currency }}{{ postage|floatformat:"2" }}</td>		  
 		  </tr>
 		  {% endif %}
 		  <tr>
 		  	<td><strong>TOTAL</strong></td>
 		  	<td>&nbsp;</td>
-		  	<td><strong>£{{ total_price }}</strong></td>		  
+		  	<td><strong>{{ currency }}{{ total_price }}</strong></td>		  
 		  </tr>
 		</table>
 		</div>

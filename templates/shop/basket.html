@@ -247,23 +247,23 @@ a.minus:hover {
 		</div>
 		<div class="tea-weight">
 			<a title="{{ thing.item.parent_product.description }}" href="{% url product_view thing.item.parent_product.slug %}">{{ thing.item.parent_product.name }}</a>
-			{{ thing.item.price_unit }}{{ thing.item.price }}<br/>
+			{{ currency }}{{ thing.item.price }}<br/>
 			<a title="Remove" alt="remove item from your basket" href="{% url remove_from_basket thing.item.id %}"><span class="small">Remove from basket</span></a>
 		</div>
 		<div class="tea-price">&nbsp;</div>
 		<div class="tea-quantity">x {{ thing.quantity }} 
 			<div class="plus-minus"><a class="plus" href="{% url increase_quantity thing.item.id %}"></a>{% ifequal thing.quantity 1 %}{% else %} <a class="minus" href="{% url reduce_quantity thing.item.id %}"></a>{% endifequal %}</div> </div>
-		<div class="tea-total">{{ thing.item.price_unit}}{{ thing.get_price }}</div>
+		<div class="tea-total">{{ currency }}{{ thing.get_price }}</div>
 		
 	  </div>
 	{% endfor %}
 	{% if postage_discount %}
 	  <div class="basket-row postage">
 		<div class="tea-name strikethrough"><em>Postage <span class="small">(Standard)</span></em></div>
-		<div class="tea-weight"><span class="small"><em>* Your order is over £50, so there's no postage charge!</em></span></div>
+		<div class="tea-weight"><span class="small"><em>* Your order is over {{ currency }}50, so there's no postage charge!</em></span></div>
 		<div class="tea-price">&nbsp;</div>
 		<div class="tea-quantity">&nbsp;</div>
-		<div class="tea-total strikethrough">£3.00</div>
+		<div class="tea-total strikethrough">{{ currency }}{{ postage|floatformat:"2" }}</div>
 	  </div>
 	{% else %}
 	  <div class="basket-row postage">
@@ -271,12 +271,12 @@ a.minus:hover {
 		<div class="tea-weight"><em>Delivered in 1-3 days<br/><span class="small">Shipped from Shanghai, China</span></em></div>
 		<div class="tea-price">&nbsp;</div>
 		<div class="tea-quantity">&nbsp;</div>
-		<div class="tea-total">£2.00</div>
+		<div class="tea-total">{{ currency }}{{ postage|floatformat:"2" }}</div>
 	  </div>
 	{% endif %}
 	</div>
 	<div id="totals">
-		<div class="label">Total:</div><div class="total">£{{ total_price }}</div>
+		<div class="label">Total:</div><div class="total">{{ currency }}{{ total_price }}</div>
 	</div>
 	<br clear="all"/>
 
