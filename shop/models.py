@@ -450,7 +450,7 @@ def show_me_the_money(sender, **kwargs):
     # create and send an email to the customer
     to_email = order.owner.email
     from_email = settings.SITE_EMAIL
-    subject = "Order confirmed - Min River Tea Farm" 
+    subject = "Order confirmed - ChinaChristmasCards.Com" 
     
     text_content = render_to_string('shop/emails/text/order_confirm_customer.txt', {
     	        'first_name': order.owner.first_name, 
@@ -465,7 +465,6 @@ def show_me_the_money(sender, **kwargs):
                 'subject': subject,
     })
     
-    
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
@@ -478,7 +477,7 @@ def show_me_the_money(sender, **kwargs):
     	        'invoice_id': invoice_id, 
     	        'order_items': order.items.all(), 
     	        'order_status': order.status})
-    subject_line = "NEW ORDER - %s" % invoice_id      
+    subject_line = "NEW ORDER (ChinaChristmasCards.com) - %s" % invoice_id      
       
     send_mail(
                   subject_line, 
@@ -499,10 +498,10 @@ def payment_flagged(sender, **kwargs):
      # create and send an email to me
     invoice_id = order.invoice_id
     email = order.owner.email
-    recipient = 'mail@christmastea.com'
+    recipient = 'mail@chinachristmascards.com'
     body = render_to_string('shop/emails/text/order_confirm_admin.txt', {'email': email, 'invoice_id': invoice_id, 'order_items': order.items.all()})
     subject_line = "FLAGGED ORDER - %s" % invoice_id 
-    email_sender = 'mail@christmastea.com'
+    email_sender = 'mail@chinachristmascards.com'
       
     send_mail(
                   subject_line, 
