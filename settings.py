@@ -59,7 +59,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'christmas.shop.context_processors.get_basket',
     'christmas.shop.context_processors.get_basket_quantity',
-    'christmas.shop.context_processors.get_shopper',
+#    'christmas.shop.context_processors.get_shopper',
     'christmas.shop.context_processors.common',
 )
 
