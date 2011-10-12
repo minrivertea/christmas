@@ -9,10 +9,14 @@
 {% block extrajs %}
 <script type="text/javascript">
 
-  var text = "";
+function playSound(url) {
+	document.getElementById("sound").innerHTML=
+	 "<embed src=\""+url+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+}
+
+var text = "";
   
 $(window).keypress(function(event) {
-
   if ( event.which == 115 ) {
      text += "s";
    }
@@ -29,15 +33,12 @@ $(window).keypress(function(event) {
      text += "a";
    }
    if ( text == "santa" ) {
-   	$('#santa').toggle().animate({
-    bottom: '+=150',
-  }, 3000, function() {
-    // Animation complete.
-  });
+   	$('#santa').fadeIn(300).animate({ bottom: '+=220',}, { queue: false, duration: 300 });
    	text = "";
+   	playSound('/js/jingle.mp3');
    }
-   
 });
+
 
 </script>
 {% endblock %}
@@ -352,9 +353,53 @@ div#home-extra div.box h4 {
 #santa {
   display: none;
   position: absolute;
-  right: -230px;
-  bottom: -170px;	
+  right: 0px;
+  bottom: -20px;
+  z-index: 0;	
 }
+
+#santa #arm {
+    left: 20px;
+    position: absolute;
+    top: 11px;
+    z-index: 1;
+    border-spacing: 0;
+}
+
+#santa #body {
+  position: absolute;
+  z-index: 2;	
+}
+
+@-webkit-keyframes oscillation
+{
+	from
+	{
+		-webkit-transform:rotate(-5deg);
+	}
+	to{
+		-webkit-transform:rotate(5deg);
+	}
+}
+ 
+@-moz-keyframes oscillation
+{
+	from{
+		-moz-transform:rotate(-5deg);
+	}
+	to{
+		-moz-transform:rotate(5deg);
+	}
+}
+
+ 
+.oscillate{  
+	-webkit-transform-origin:50% 240px;  
+	-moz-transform-origin:50% 240px;   
+	-webkit-animation: oscillation 1s ease-in-out infinite alternate;
+	-moz-animation: oscillation 1s ease-in-out infinite alternate;
+}
+
 </style>
 {% endblock %}
 
@@ -366,15 +411,17 @@ div#home-extra div.box h4 {
   <div class="super">
   
 	<div class="top">
-		<img id="santa" src="{% staticfile '/images/santa.jpg' %}"/>
+		<div id="santa">
+			<img id="body" src="{% staticfile '/images/santas-body.png' %}"/>
+			<img id="arm" class="oscillate" src="{% staticfile '/images/santas-arm.png' %}"/>
+		</div>
 		<h1>Christmas cards in China? <span>Your search is over.</span></h1>
 		<p>Send cards home to your loved ones this Christmas, from China. Just because you're 10,000 miles away, doesn't mean Christmas isn't happening. </p>	
 	</div>
   </div>
 </div>
 
-
-
+<div id="sound"></div>
 
 <div id="products">
   <div class="super">
