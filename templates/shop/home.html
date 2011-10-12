@@ -6,6 +6,42 @@
 
 {% block metadescription %}Can't find Christmas cards in China? We sell cards and deliver them to your door, so you'll always be able to send a real card back home.{% endblock %}
 
+{% block extrajs %}
+<script type="text/javascript">
+
+  var text = "";
+  
+$(window).keypress(function(event) {
+
+  if ( event.which == 115 ) {
+     text += "s";
+   }
+   if ( event.which == 97 ) {
+     text += "a";
+   }
+   if ( event.which == 110 ) {
+     text += "n";
+   }
+   if ( event.which == 116 ) {
+     text += "t";
+   }
+   if ( (event.which == 97 ) && (text == "sant" )) {
+     text += "a";
+   }
+   if ( text == "santa" ) {
+   	$('#santa').toggle().animate({
+    bottom: '+=150',
+  }, 3000, function() {
+    // Animation complete.
+  });
+   	text = "";
+   }
+   
+});
+
+</script>
+{% endblock %}
+
 
 {% block extracss %}
 <style type="text/css">
@@ -82,6 +118,7 @@ div#feature {
     padding-bottom: 0;
     width: 100%;
     display: ;
+    position: relative;
 }
 
 div#feature div.top {
@@ -90,7 +127,7 @@ div#feature div.top {
     padding-right: 10px;
     position: relative;
     top: 60px;
-    width: 700px;
+    width: 660px;
 }
 
 div#feature div.top h1 {
@@ -311,6 +348,13 @@ div#home-extra div.box h4 {
   margin-left: 30px;
   float: left;	
 }
+
+#santa {
+  display: none;
+  position: absolute;
+  right: -230px;
+  bottom: -170px;	
+}
 </style>
 {% endblock %}
 
@@ -318,13 +362,18 @@ div#home-extra div.box h4 {
 
 
 <div id="feature">
+
   <div class="super">
+  
 	<div class="top">
+		<img id="santa" src="{% staticfile '/images/santa.jpg' %}"/>
 		<h1>Christmas cards in China? <span>Your search is over.</span></h1>
 		<p>Send cards home to your loved ones this Christmas, from China. Just because you're 10,000 miles away, doesn't mean Christmas isn't happening. </p>	
 	</div>
   </div>
 </div>
+
+
 
 
 <div id="products">
