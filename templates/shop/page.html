@@ -220,6 +220,12 @@ div#right p.mail.last {
   border-bottom: none;	
 }
 
+p.introduction {
+  font-size: 18px;
+  font-weight: bold;
+  color: 	
+}
+
 </style>
 {% endblock %}
 
@@ -235,12 +241,6 @@ div#right p.mail.last {
   <div class="super">
 	<div id="right">	
 	  		  {% include 'shop/snippets/page_navigation.html' %}
-	  		  {% if '/about/' in request.path %}
-	  		    {% include 'shop/snippets/about_right.html' %}
-	  		  {% endif %}
-	  		  {% if '/learn/' in request.path %}
-	  		    {% include 'shop/snippets/learn_right.html' %}
-	  		  {% endif %}
 	</div>
 
 	<div id="left">
