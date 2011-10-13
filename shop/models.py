@@ -157,7 +157,7 @@ class Product(models.Model):
         return self.name
       
     def get_absolute_url(self):
-        return "/teas/%s/" % self.slug  #important, do not change
+        return "/cards/%s/" % self.slug  #important, do not change
     
     def get_lowest_price(self):
         try:
