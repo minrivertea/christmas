@@ -36,7 +36,7 @@ $(window).keypress(function(event) {
    	$('#santa').fadeIn(300).animate({ bottom: '+=185',}, { queue: false, duration: 700 });
    	text = "";
    	playSound('/js/jingle.mp3');
-   	
+   	$(window).unbind('keypress');
    }
 });
 
@@ -354,7 +354,7 @@ div#home-extra div.box h4 {
 #santa {
   display: none;
   position: absolute;
-  right: 0px;
+  right: 20px;
   bottom: -20px;
   z-index: 0;	
 }
@@ -370,6 +370,12 @@ div#home-extra div.box h4 {
 #santa #body {
   position: absolute;
   z-index: 2;	
+}
+
+#santa #words {
+  position: absolute;
+  z-index: 3;
+  top: -32px;	
 }
 
 @-webkit-keyframes oscillation
@@ -413,6 +419,7 @@ div#home-extra div.box h4 {
   
 	<div class="top">
 		<div id="santa">
+			<img id="words" src="{% staticfile '/images/santa-words.png' %}"/>
 			<img id="body" src="{% staticfile '/images/santas-body.png' %}"/>
 			<img id="arm" class="oscillate" src="{% staticfile '/images/santas-arm.png' %}"/>
 		</div>

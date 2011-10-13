@@ -341,7 +341,7 @@ div.tea-top div.tea-description p {
 			{% for other in others %}
 				<li>
 					{% thumbnail other.image "100" crop="center" as im%}
-						<img alt="{{ other.description }}" class="mail-icon" src="{{ im.url }}" />
+						<a href="{% url product_view other.slug %}"><img alt="{{ other.description }}" class="mail-icon" src="{{ im.url }}" /></a>
 					{% endthumbnail %}
 					<a class="title" href="{% url product_view other.slug %}">{{ other.name }}</a>
 					<br/>{{ other.super_short_description }}
