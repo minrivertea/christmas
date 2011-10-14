@@ -1,6 +1,6 @@
 Hi {{ first_name }},
 
-Just to let you know, we've received your order at http://www.minrivertea.com:
+Just to let you know, we've received your order at http://www.chinachristmascards.com:
 
 {% for item in order_items %}
 	- {{ item }}
@@ -8,8 +8,8 @@ Just to let you know, we've received your order at http://www.minrivertea.com:
 
 Please note, we must confirm payment is received before we send any orders. If there is a problem with your payment, we'll contact you immediately. Otherwise, if you need to contact us, please quote this order ID: {{ invoice_id }}
 
-Many thanks for ordering from the Min River Tea Farm and we hope you enjoy drinking your tea!
+Many thanks for ordering from www.ChinaChristmasCards.com and we wish you a Merry Christmas!
 
 Chris West, 
-Founder - Min River Tea Farm
-http://www.minrivertea.com
+Founder
+http://www.chinachristmascards.com

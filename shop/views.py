@@ -194,7 +194,7 @@ def contact_us(request):
 
             recipient = settings.SITE_EMAIL
             sender = settings.SITE_EMAIL
-            subject_line = "christmasTEA.COM - WEBSITE CONTACT SUBMISSION"
+            subject_line = "chinachristmascards.com - WEBSITE CONTACT SUBMISSION"
                 
             send_mail(
                           subject_line, 
@@ -428,7 +428,7 @@ def order_step_one(request):
                 order.save()
 
             # give the order a unique ID
-            order.invoice_id = "TEA-00%s" % (order.id)
+            order.invoice_id = "CARDS-00%s" % (order.id)
             order.save()
 
             request.session['ORDER_ID'] = order.invoice_id  
@@ -618,7 +618,7 @@ def send_review_email(request, order_id):
     
     # create and send an email to the user to say thanks.
     
-    subject = "christmastea.com - how to brew your tea"
+    subject = "chinachristmascards.com - how to brew your tea"
     from_email = settings.SITE_EMAIL
     to_email = order.owner.email
     
