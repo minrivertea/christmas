@@ -33,7 +33,7 @@ $(window).keypress(function(event) {
      text += "a";
    }
    if ( text == "santa" ) {
-   	$('#santa').fadeIn(300).animate({ bottom: '+=185',}, { queue: false, duration: 700 });
+   	$('#santa').fadeIn(300).animate({ bottom: '+=165',}, { queue: false, duration: 700 });
    	text = "";
    	playSound('/js/jingle.mp3');
    	$(window).unbind('keypress');
@@ -134,7 +134,7 @@ div#feature div.top {
 
 div#feature div.top h1 {
     color: #be2121;
-    font-size: 50px;
+    font-size: 40px;
     margin: 10px 0 10px 0;
     text-align: left;
     text-shadow: 0 3px 2px #fff;
@@ -150,7 +150,7 @@ div#feature div.top p {
   float: left;
   padding: 0 0 0 0px;
   color: #333;
-  font-size: 19px;
+  font-size: 17px;
   text-align: left;
 }
 
@@ -423,8 +423,8 @@ div#home-extra div.box h4 {
 			<img id="body" src="{% staticfile '/images/santas-body.png' %}"/>
 			<img id="arm" class="oscillate" src="{% staticfile '/images/santas-arm.png' %}"/>
 		</div>
-		<h1>Christmas cards in China? <span>Your search is over.</span></h1>
-		<p>Send cards home to your loved ones this Christmas, from China. Just because you're 10,000 miles away, doesn't mean Christmas isn't happening. </p>	
+		<h1>Want Christmas Cards but don't speak Chinese? <span>Your search is over.</span></h1>
+		<p>Don't waste a day scouring shops in China for authentic Christmas cards - order online and we'll send you the cards direct and fast. Just because you're 10,000 miles away, doesn't mean Christmas isn't coming.</p>
 	</div>
   </div>
 </div>
